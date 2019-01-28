@@ -824,6 +824,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   jumpThrust: 7.5
+  dashSpeed: 50
+  dashTime: 0
+  dashStart: 0.1
   isGrounded: 0
 --- !u!1001 &4594847203477390294
 PrefabInstance:
