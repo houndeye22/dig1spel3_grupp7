@@ -13,8 +13,6 @@ public class Movement : MonoBehaviour
     void Start()
     {
         rbod1 = GetComponent<Rigidbody2D>();
-
-
     }
 
     // Update is called once per frame
@@ -22,7 +20,7 @@ public class Movement : MonoBehaviour
     {
         rbod1.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rbod1.velocity.y);
 
-        if (Input.GetAxisRaw("Vertical") > 0)
+        if (Input.GetAxisRaw("Jump") > 0)
         {
             if (isGrounded == true)
             {
