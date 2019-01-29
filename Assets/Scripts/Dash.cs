@@ -4,64 +4,53 @@ using UnityEngine;
 
 public class Dash : MonoBehaviour
 {
-
-    public float dashSpeed;
+    private Rigidbody2D rbodyDash;
+    public float dashSpeed = 50;
     private float dashTime;
-    public float dashStartTime;
+    public float startDashTime = 0.1f;
     private int direction;
 
-    Rigidbody2D rbodyDash;
-
-    
-    void Start()
+    private void Start()
     {
         rbodyDash = GetComponent<Rigidbody2D>();
-        dashTime = dashStartTime;
+        dashTime = startDashTime;
     }
 
-    private void Update()
+    public void FixedUpdate()
     {
-    if (direction == 0)
+        if (direction == 0)
         {
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 direction = 1;
             }
-            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            else if (Input.GetKeyDown(KeyCode.E))
             {
                 direction = 2;
             }
-            else if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                direction = 3;
-            }
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                direction = 4;
-            }
-
         }
+
+        else
+        {
+            if (dashTime <= 0)
+            {
+                direction = 0;
+                dashTime = startDashTime;
+                rbodyDash.velocity = Vector2.zero;
+            }
             else
             {
-                if (dashTime <= 0)
-                {
-                    direction = 0;
-                    dashTime = dashStartTime;
-                    rbodyDash.velocity = Vector2.zero;
-                }
-                else
-                {
-                    dashTime -= Time.deltaTime;
+                dashTime -= Time.deltaTime;
 
-                    if (direction == 1)
-                    {
-                        rbodyDash.velocity = Vector2.left* dashSpeed;
-                    }
+                if (direction == 1)
+                {
+                    rbodyDash.velocity = Vector2.left * dashSpeed;
+                }
                 else if (direction == 2)
-                    {
-                        rbodyDash.velocity = Vector2.right* dashSpeed;
-                    }
+                {
+                    rbodyDash.velocity = Vector2.right * dashSpeed;
                 }
             }
+        }
     }
 }

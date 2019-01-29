@@ -7,75 +7,77 @@ public class Movement : MonoBehaviour
     Rigidbody2D rbod1;
     public int moveSpeed;
     public float jumpThrust;
-    public float dashSpeed;
-    public float dashTime;
-    public float dashStart;
+    private Rigidbody2D rbodyDash;
+    public float dashSpeed = 50;
+    private float dashTime;
+    public float startDashTime = 0.1f;
     private int direction;
+    public bool isDashing;
 
-
-    // Start is called before the first frame update
     void Start()
     {
-        dashSpeed = 4;
+        rbodyDash = GetComponent<Rigidbody2D>();
+        dashTime = startDashTime;
         rbod1 = GetComponent<Rigidbody2D>();
-        dashTime = dashStart;
+        isDashing = true;
     }
 
-    // Update is called once per frame
-    private void Update()
-    {
-        if (direction == 0)
-        {
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                direction = 2;
-            }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                direction = 1;
-            }
-            else
-            {
-                if (dashTime <= 0)
-                {
-                    direction = 0;
-                    dashTime = dashStart;
-                    rbod1.velocity = Vector2.zero;
-                }
-                else
-                {
-                    dashTime -= Time.deltaTime;
-
-                    if (direction == 1)
-                    {
-                        rbod1.velocity = Vector2.left * dashSpeed;
-                    } else
-                    {
-                        rbod1.velocity = Vector2.right * dashSpeed;
-                    }
-                }
-            }
-        }
-    }
 
     void FixedUpdate()
     {
-        rbod1.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rbod1.velocity.y);
-
-        if (Input.GetAxisRaw("Jump") > 0)
+        if (direction == 0)
         {
-            if (isGrounded == true)
+            if (Input.GetKeyDown(KeyCode.Q))
             {
-                rbod1.velocity = new Vector2(rbod1.velocity.x, jumpThrust);
+                isDashing = false;
+                direction = 1;
+            }
+            else if (Input.GetKeyDown(KeyCode.E))
+            {
+                isDashing = false;
+                direction = 2;
+            }
+        }
+        else
+        {
+            if (dashTime <= 0)
+            {
+                direction = 0;
+                dashTime = startDashTime;
+                rbodyDash.velocity = Vector2.zero;
+                isDashing = true;
+            }
+            else
+            {
+                dashTime -= Time.deltaTime;
+
+                if (direction == 1)
+                {
+                    rbodyDash.velocity = Vector2.left * dashSpeed;
+                }
+                else if (direction == 2)
+                {
+                    rbodyDash.velocity = Vector2.right * dashSpeed;
+                }
+            }
+        }
+
+        if (isDashing == true)
+        {
+            rbod1.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rbod1.velocity.y);
+
+            if (Input.GetAxisRaw("Jump") > 0)
+            {
+                if (isGrounded == true)
+                {
+                    rbod1.velocity = new Vector2(rbod1.velocity.x, jumpThrust);
+                }
             }
         }
     }
 
 
-
-
     public bool isGrounded;
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         isGrounded = true;
@@ -85,3 +87,4 @@ public class Movement : MonoBehaviour
         isGrounded = false;
     }
 }
+
