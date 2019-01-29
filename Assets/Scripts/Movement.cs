@@ -24,6 +24,15 @@ public class Movement : MonoBehaviour
     {
         rbod1.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rbod1.velocity.y);
 
+<<<<<<< HEAD
+        if (Input.GetAxisRaw("Jump") > 0)
+        {
+            if (isGrounded == true)
+            {
+                rbod1.velocity = new Vector2(rbod1.velocity.x, jumpThrust);
+            }
+        }
+=======
 
 
 
@@ -32,6 +41,7 @@ public class Movement : MonoBehaviour
 
 
         Jump1();
+>>>>>>> origin/master
     }
 
 
