@@ -14,7 +14,7 @@ public class Movement : MonoBehaviour
     public bool isJumping;
     public bool hasJumped;
 
-
+    
     void Start()
     {
         rbod1 = GetComponent<Rigidbody2D>();
@@ -24,24 +24,41 @@ public class Movement : MonoBehaviour
     {
         rbod1.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rbod1.velocity.y);
 
-<<<<<<< HEAD
-        if (Input.GetAxisRaw("Jump") > 0)
+        print(Input.GetButton("Jump"));
+
+
+        //If you jump while grounded...
+        if (Input.GetButton("Jump") && isGrounded == true)
         {
-            if (isGrounded == true)
-            {
-                rbod1.velocity = new Vector2(rbod1.velocity.x, jumpThrust);
-            }
+            isJumping = true;
+            rbod1.velocity = new Vector2(rbod1.velocity.x, jumpThrust / 3);
+        
         }
-=======
+        //Adds a small numeral
+        if(Input.GetButton("Jump"))
+        {
+            jumpTime += Time.deltaTime;
+        }
+        if(isGrounded  == true)
+        {
+            jumpTime = 0;
+        }
+        if (Input.GetButton("Jump") && jumpTime < jumpMax && isJumping == true)
+        {
+            rbod1.AddForce(Vector2.up * jumpThrust * 2);
+        }
+        else
+        {
+            isJumping = false;
+        }
+        //if(Input.GetButtonUp("Jump"))
+        //{
+        //    isJumping = false;
+        //}
 
 
+        //Jump1();
 
-
-
-
-
-        Jump1();
->>>>>>> origin/master
     }
 
 
@@ -77,7 +94,7 @@ public class Movement : MonoBehaviour
             isJumping = false;
         }
 
-       
+
 
         if (Input.GetAxisRaw("Jump") > 0 && isGrounded == true)
         {
@@ -99,7 +116,7 @@ public class Movement : MonoBehaviour
 
                 if (jumpTime < jumpMax / 5)
                 {
-                    rbod1.AddForce(Vector2.up * jumpThrust * 2.5f);
+                    rbod1.AddForce(Vector2.up * jumpTime * 5);
                 }
 
             }
