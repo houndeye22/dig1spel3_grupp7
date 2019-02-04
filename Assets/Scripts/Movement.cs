@@ -14,7 +14,7 @@ public class Movement : MonoBehaviour
     public bool isJumping;
     public bool hasJumped;
 
-    
+
     void Start()
     {
         rbod1 = GetComponent<Rigidbody2D>();
@@ -31,26 +31,30 @@ public class Movement : MonoBehaviour
         if (Input.GetButton("Jump") && isGrounded == true)
         {
             isJumping = true;
-            rbod1.velocity = new Vector2(rbod1.velocity.x, jumpThrust / 3);
-        
+            rbod1.velocity = new Vector2(rbod1.velocity.x, jumpThrust / 7);
+
         }
-        //Adds a small numeral
-        if(Input.GetButton("Jump"))
+        //Subtracts a small numeral
+        if (Input.GetButton("Jump"))
         {
-            jumpTime += Time.deltaTime;
+            if (jumpTime > 0)
+            {
+                jumpTime -= Time.deltaTime;
+            }
         }
-        if(isGrounded  == true)
+        if (isGrounded == true)
         {
-            jumpTime = 0;
+            jumpTime = jumpMax;
         }
-        if (Input.GetButton("Jump") && jumpTime < jumpMax && isJumping == true)
+        if (Input.GetButton("Jump") && jumpTime > 0 && isJumping == true)
         {
-            rbod1.AddForce(Vector2.up * jumpThrust * 2);
+            rbod1.AddForce(Vector2.up * jumpThrust * jumpTime * 20);
         }
         else
         {
             isJumping = false;
         }
+
         //if(Input.GetButtonUp("Jump"))
         //{
         //    isJumping = false;
@@ -69,7 +73,6 @@ public class Movement : MonoBehaviour
     {
         isGrounded = true;
         isJumping = false;
-        hasJumped = false;
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -114,9 +117,10 @@ public class Movement : MonoBehaviour
                 jumpTime += Time.deltaTime;
                 rbod1.AddForce(Vector2.up * jumpThrust); //new Vector2(rbod1.velocity.x, jumpCounter);
 
-                if (jumpTime < jumpMax / 5)
+                if (jumpTime < 0.2f)
                 {
-                    rbod1.AddForce(Vector2.up * jumpTime * 5);
+                    rbod1.AddForce(Vector2.up * jumpThrust * 10);
+                    print(jumpMax);
                 }
 
             }
