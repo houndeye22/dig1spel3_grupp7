@@ -6,6 +6,7 @@ TagManager:
   tags:
   - InvisibleWall
   - Enemy
+  - Sword
   layers:
   - Default
   - TransparentFX
