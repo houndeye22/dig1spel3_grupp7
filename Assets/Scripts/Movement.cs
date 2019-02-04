@@ -5,10 +5,10 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     Rigidbody2D rbod1;
-    public int moveSpeed;
-    public float jumpThrust;
+    public int moveSpeed = 10;
+    public float jumpThrust = 73;
 
-    public float jumpMax;
+    public float jumpMax = 0.25f;
     public float jumpTime;
 
     public bool isJumping;
@@ -24,7 +24,6 @@ public class Movement : MonoBehaviour
     {
         rbod1.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rbod1.velocity.y);
 
-<<<<<<< HEAD
         if (Input.GetAxisRaw("Jump") > 0)
         {
             if (isGrounded == true)
@@ -32,16 +31,8 @@ public class Movement : MonoBehaviour
                 rbod1.velocity = new Vector2(rbod1.velocity.x, jumpThrust);
             }
         }
-=======
-
-
-
-
-
-
 
         Jump1();
->>>>>>> origin/master
     }
 
 
@@ -77,7 +68,7 @@ public class Movement : MonoBehaviour
             isJumping = false;
         }
 
-       
+
 
         if (Input.GetAxisRaw("Jump") > 0 && isGrounded == true)
         {
