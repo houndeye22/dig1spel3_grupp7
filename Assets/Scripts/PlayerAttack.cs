@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
-{
+{ 
     public bool isAttacking = false;
    
     public float attackCd = 1f;
@@ -69,6 +69,5 @@ public class PlayerAttack : MonoBehaviour
         attackTriggerUp.SetActive(false);
         attackTriggerLeft.SetActive(false);
     }
-
 
 }
