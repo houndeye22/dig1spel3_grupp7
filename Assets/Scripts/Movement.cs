@@ -24,15 +24,46 @@ public class Movement : MonoBehaviour
     {
         rbod1.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rbod1.velocity.y);
 
+<<<<<<< HEAD
         if (Input.GetAxisRaw("Jump") > 0)
+=======
+        print(Input.GetButton("Jump"));
+
+
+        //If you jump while grounded...
+        if (Input.GetButton("Jump") && isGrounded == true)
         {
-            if (isGrounded == true)
+            isJumping = true;
+            rbod1.velocity = new Vector2(rbod1.velocity.x, jumpThrust / 7);
+
+        }
+        //Subtracts a small numeral
+        if (Input.GetButton("Jump"))
+>>>>>>> Erik
+        {
+            if (jumpTime > 0)
             {
-                rbod1.velocity = new Vector2(rbod1.velocity.x, jumpThrust);
+                jumpTime -= Time.deltaTime;
             }
         }
+<<<<<<< HEAD
 
         Jump1();
+=======
+        if (isGrounded == true)
+        {
+            jumpTime = jumpMax;
+        }
+        if (Input.GetButton("Jump") && jumpTime > 0 && isJumping == true)
+        {
+            rbod1.AddForce(Vector2.up * jumpThrust * jumpTime * 20);
+        }
+        else
+        {
+            isJumping = false;
+        }
+
+>>>>>>> Erik
     }
 
 
@@ -43,7 +74,6 @@ public class Movement : MonoBehaviour
     {
         isGrounded = true;
         isJumping = false;
-        hasJumped = false;
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -53,6 +83,7 @@ public class Movement : MonoBehaviour
 
 
 
+<<<<<<< HEAD
     void Jump1()
     {
 
@@ -101,3 +132,6 @@ public class Movement : MonoBehaviour
         }
     }
 }
+=======
+}
+>>>>>>> Erik
