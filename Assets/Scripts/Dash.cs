@@ -25,7 +25,10 @@ public class Dash : MonoBehaviour
 
         if (Input.GetAxis("Horizontal") > 0)
         {
+            if(Input.GetButtonDown("Fire2"))
+            {
 
+            }
         }
         if (Input.GetAxis("Horizontal") < 0)
         {
