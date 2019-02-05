@@ -26,7 +26,8 @@ public class Movement : MonoBehaviour
 
 
         if (Input.GetAxisRaw("Jump") > 0)
-            print(Input.GetButton("Jump"));
+
+        print(Input.GetButton("Jump"));
 
 
         //If you jump while grounded...
@@ -38,13 +39,15 @@ public class Movement : MonoBehaviour
         }
         //Subtracts a small numeral
         if (Input.GetButton("Jump"))
-
         {
             if (jumpTime > 0)
             {
                 jumpTime -= Time.deltaTime;
             }
         }
+
+
+        Jump1();
 
         if (isGrounded == true)
         {
@@ -79,6 +82,54 @@ public class Movement : MonoBehaviour
 
 
 
+    void Jump1()
+    {
 
- 
+        if (isJumping == true)
+        {
+            if (Input.GetAxisRaw("Jump") == 0)
+            {
+                hasJumped = true;
+            }
+        }
+        if (hasJumped == true)
+        {
+            isJumping = false;
+        }
+
+
+
+        if (Input.GetAxisRaw("Jump") > 0 && isGrounded == true)
+        {
+            jumpTime = 0;
+        }
+
+
+        if (Input.GetAxisRaw("Jump") > 0 && hasJumped == false)
+        {
+            isJumping = true;
+        }
+        if (Input.GetAxisRaw("Jump") > 0 && isJumping == true)
+        {
+            if (jumpTime < jumpMax)
+            {
+
+                jumpTime += Time.deltaTime;
+                rbod1.AddForce(Vector2.up * jumpThrust); //new Vector2(rbod1.velocity.x, jumpCounter);
+
+                if (jumpTime < jumpMax / 5)
+                {
+                    rbod1.AddForce(Vector2.up * jumpThrust * 2.5f);
+                }
+
+            }
+            else
+            {
+                isJumping = false;
+            }
+        }
+    }
 }
+
+
+
