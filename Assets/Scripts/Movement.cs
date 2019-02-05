@@ -5,133 +5,86 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     Rigidbody2D rbod1;
-    public int moveSpeed = 10;
-    public float jumpThrust = 73;
-
-    public float jumpMax = 0.25f;
-    public float jumpTime;
-
-    public bool isJumping;
-    public bool hasJumped;
-
+    public int moveSpeed;
+    public float jumpThrust;
+    private Rigidbody2D rbodyDash;
+    public float dashSpeed = 50;
+    private float dashTime;
+    public float startDashTime = 0.1f;
+    private int direction;
+    public bool isDashing;
 
     void Start()
     {
+        rbodyDash = GetComponent<Rigidbody2D>();
+        dashTime = startDashTime;
         rbod1 = GetComponent<Rigidbody2D>();
+        isDashing = true;
     }
+
 
     void FixedUpdate()
     {
-        rbod1.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rbod1.velocity.y);
-
-<<<<<<< HEAD
-        if (Input.GetAxisRaw("Jump") > 0)
-=======
-        print(Input.GetButton("Jump"));
-
-
-        //If you jump while grounded...
-        if (Input.GetButton("Jump") && isGrounded == true)
+        if (direction == 0)
         {
-            isJumping = true;
-            rbod1.velocity = new Vector2(rbod1.velocity.x, jumpThrust / 7);
-
-        }
-        //Subtracts a small numeral
-        if (Input.GetButton("Jump"))
->>>>>>> Erik
-        {
-            if (jumpTime > 0)
+            if (Input.GetKeyDown(KeyCode.Q))
             {
-                jumpTime -= Time.deltaTime;
+                isDashing = false;
+                direction = 1;
             }
-        }
-<<<<<<< HEAD
-
-        Jump1();
-=======
-        if (isGrounded == true)
-        {
-            jumpTime = jumpMax;
-        }
-        if (Input.GetButton("Jump") && jumpTime > 0 && isJumping == true)
-        {
-            rbod1.AddForce(Vector2.up * jumpThrust * jumpTime * 20);
+            else if (Input.GetKeyDown(KeyCode.E))
+            {
+                isDashing = false;
+                direction = 2;
+            }
         }
         else
         {
-            isJumping = false;
+            if (dashTime <= 0)
+            {
+                direction = 0;
+                dashTime = startDashTime;
+                rbodyDash.velocity = Vector2.zero;
+                isDashing = true;
+            }
+            else
+            {
+                dashTime -= Time.deltaTime;
+
+                if (direction == 1)
+                {
+                    rbodyDash.velocity = Vector2.left * dashSpeed;
+                }
+                else if (direction == 2)
+                {
+                    rbodyDash.velocity = Vector2.right * dashSpeed;
+                }
+            }
         }
 
->>>>>>> Erik
+        if (isDashing == true)
+        {
+            rbod1.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rbod1.velocity.y);
+
+            if (Input.GetAxisRaw("Jump") > 0)
+            {
+                if (isGrounded == true)
+                {
+                    rbod1.velocity = new Vector2(rbod1.velocity.x, jumpThrust);
+                }
+            }
+        }
     }
 
 
-
     public bool isGrounded;
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         isGrounded = true;
-        isJumping = false;
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         isGrounded = false;
     }
-
-
-
-
-<<<<<<< HEAD
-    void Jump1()
-    {
-
-        if (isJumping == true)
-        {
-            if (Input.GetAxisRaw("Jump") == 0)
-            {
-                hasJumped = true;
-            }
-        }
-        if (hasJumped == true)
-        {
-            isJumping = false;
-        }
-
-
-
-        if (Input.GetAxisRaw("Jump") > 0 && isGrounded == true)
-        {
-            jumpTime = 0;
-        }
-
-
-        if (Input.GetAxisRaw("Jump") > 0 && hasJumped == false)
-        {
-            isJumping = true;
-        }
-        if (Input.GetAxisRaw("Jump") > 0 && isJumping == true)
-        {
-            if (jumpTime < jumpMax)
-            {
-
-                jumpTime += Time.deltaTime;
-                rbod1.AddForce(Vector2.up * jumpThrust); //new Vector2(rbod1.velocity.x, jumpCounter);
-
-                if (jumpTime < jumpMax / 5)
-                {
-                    rbod1.AddForce(Vector2.up * jumpThrust * 2.5f);
-                }
-
-            }
-            else
-            {
-                isJumping = false;
-            }
-        }
-    }
 }
-=======
-}
->>>>>>> Erik
+
