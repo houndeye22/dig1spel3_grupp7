@@ -5,86 +5,80 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     Rigidbody2D rbod1;
-    public int moveSpeed;
-    public float jumpThrust;
-    private Rigidbody2D rbodyDash;
-    public float dashSpeed = 50;
-    private float dashTime;
-    public float startDashTime = 0.1f;
-    private int direction;
-    public bool isDashing;
+    public int moveSpeed = 10;
+    public float jumpThrust = 73;
+
+    public float jumpMax = 0.25f;
+    public float jumpTime;
+
+    public bool isJumping;
+    public bool hasJumped;
+
 
     void Start()
     {
-        rbodyDash = GetComponent<Rigidbody2D>();
-        dashTime = startDashTime;
         rbod1 = GetComponent<Rigidbody2D>();
-        isDashing = true;
     }
-
 
     void FixedUpdate()
     {
-        if (direction == 0)
+        rbod1.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rbod1.velocity.y);
+
+
+        if (Input.GetAxisRaw("Jump") > 0)
+            print(Input.GetButton("Jump"));
+
+
+        //If you jump while grounded...
+        if (Input.GetButton("Jump") && isGrounded == true)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
+            isJumping = true;
+            rbod1.velocity = new Vector2(rbod1.velocity.x, jumpThrust / 7);
+
+        }
+        //Subtracts a small numeral
+        if (Input.GetButton("Jump"))
+
+        {
+            if (jumpTime > 0)
             {
-                isDashing = false;
-                direction = 1;
+                jumpTime -= Time.deltaTime;
             }
-            else if (Input.GetKeyDown(KeyCode.E))
-            {
-                isDashing = false;
-                direction = 2;
-            }
+        }
+
+        if (isGrounded == true)
+        {
+            jumpTime = jumpMax;
+        }
+        if (Input.GetButton("Jump") && jumpTime > 0 && isJumping == true)
+        {
+            rbod1.AddForce(Vector2.up * jumpThrust * jumpTime * 20);
         }
         else
         {
-            if (dashTime <= 0)
-            {
-                direction = 0;
-                dashTime = startDashTime;
-                rbodyDash.velocity = Vector2.zero;
-                isDashing = true;
-            }
-            else
-            {
-                dashTime -= Time.deltaTime;
-
-                if (direction == 1)
-                {
-                    rbodyDash.velocity = Vector2.left * dashSpeed;
-                }
-                else if (direction == 2)
-                {
-                    rbodyDash.velocity = Vector2.right * dashSpeed;
-                }
-            }
+            isJumping = false;
         }
 
-        if (isDashing == true)
-        {
-            rbod1.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rbod1.velocity.y);
 
-            if (Input.GetAxisRaw("Jump") > 0)
-            {
-                if (isGrounded == true)
-                {
-                    rbod1.velocity = new Vector2(rbod1.velocity.x, jumpThrust);
-                }
-            }
-        }
     }
 
 
+
     public bool isGrounded;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         isGrounded = true;
+        isJumping = false;
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         isGrounded = false;
     }
-}
 
+
+
+
+
+ 
+}
