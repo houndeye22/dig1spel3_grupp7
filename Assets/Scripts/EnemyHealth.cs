@@ -19,8 +19,9 @@ public class EnemyHealth : MonoBehaviour
             currentHealth--;
         }
     }
-     void Update()
-    {
+
+    void Update()
+    { 
         if (currentHealth == 0)
         {
             Destroy(gameObject);
