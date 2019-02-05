@@ -55,14 +55,6 @@ public class Movement : MonoBehaviour
             isJumping = false;
         }
 
-        //if(Input.GetButtonUp("Jump"))
-        //{
-        //    isJumping = false;
-        //}
-
-
-        //Jump1();
-
     }
 
 
@@ -82,52 +74,4 @@ public class Movement : MonoBehaviour
 
 
 
-    void Jump1()
-    {
-
-        if (isJumping == true)
-        {
-            if (Input.GetAxisRaw("Jump") == 0)
-            {
-                hasJumped = true;
-            }
-        }
-        if (hasJumped == true)
-        {
-            isJumping = false;
-        }
-
-
-
-        if (Input.GetAxisRaw("Jump") > 0 && isGrounded == true)
-        {
-            jumpTime = 0;
-        }
-
-
-        if (Input.GetAxisRaw("Jump") > 0 && hasJumped == false)
-        {
-            isJumping = true;
-        }
-        if (Input.GetAxisRaw("Jump") > 0 && isJumping == true)
-        {
-            if (jumpTime < jumpMax)
-            {
-
-                jumpTime += Time.deltaTime;
-                rbod1.AddForce(Vector2.up * jumpThrust); //new Vector2(rbod1.velocity.x, jumpCounter);
-
-                if (jumpTime < 0.2f)
-                {
-                    rbod1.AddForce(Vector2.up * jumpThrust * 10);
-                    print(jumpMax);
-                }
-
-            }
-            else
-            {
-                isJumping = false;
-            }
-        }
-    }
 }
