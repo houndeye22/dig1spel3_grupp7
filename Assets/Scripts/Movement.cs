@@ -6,9 +6,9 @@ public class Movement : MonoBehaviour
 {
     Rigidbody2D rbod1;
     public int moveSpeed = 10;
-    public float jumpThrust = 73;
+    public float jumpThrust = 30;
 
-    public float jumpMax = 0.25f;
+    public float jumpMax = 0.3f;
     public float jumpTime;
 
     public bool isJumping;
