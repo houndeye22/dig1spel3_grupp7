@@ -5,10 +5,10 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     Rigidbody2D rbod1;
-    public int moveSpeed;
-    public float jumpThrust;
+    public int moveSpeed = 10;
+    public float jumpThrust = 30;
 
-    public float jumpMax;
+    public float jumpMax = 0.3f;
     public float jumpTime;
 
     public bool isJumping;
@@ -18,15 +18,18 @@ public class Movement : MonoBehaviour
     void Start()
     {
         rbod1 = GetComponent<Rigidbody2D>();
+        rbod1.gravityScale = 6;
     }
 
     void FixedUpdate()
     {
         rbod1.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rbod1.velocity.y);
 
-        print(Input.GetButton("Jump"));
+        Jump();
+    }
 
-
+    void Jump()
+    {
         //If you jump while grounded...
         if (Input.GetButton("Jump") && isGrounded == true)
         {
@@ -54,7 +57,6 @@ public class Movement : MonoBehaviour
         {
             isJumping = false;
         }
-
     }
 
 

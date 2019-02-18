@@ -22,18 +22,22 @@ public class Dash : MonoBehaviour
 
     private void Update()
     {
-
-        if (Input.GetAxis("Horizontal") > 0)
+        if (Input.GetButtonDown("Fire2"))
         {
-            if(Input.GetButtonDown("Fire2"))
+            if (Input.GetAxis("Horizontal") > 0)
+            {
+                rbodyDash.AddForce(Vector2.right * 10);
+            }
+        }
+
+        if (Input.GetButtonDown("Fire2"))
+        {
+            if (Input.GetAxis("Horizontal") < 0)
             {
 
             }
         }
-        if (Input.GetAxis("Horizontal") < 0)
-        {
 
-        }
 
         if (direction == 0)
         {
