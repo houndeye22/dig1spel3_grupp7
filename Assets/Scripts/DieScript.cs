@@ -11,6 +11,7 @@ public class DieScript : MonoBehaviour
     {
         if (HPScript.healthRemaining == 0)
         {
+            HPScript.unTargetable = false;
             SceneManager.LoadScene(sceneToLoad);
         }
     }
