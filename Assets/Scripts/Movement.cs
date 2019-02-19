@@ -18,6 +18,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         rbod1 = GetComponent<Rigidbody2D>();
+        rbod1.gravityScale = 6;
     }
 
     void FixedUpdate()
@@ -25,11 +26,20 @@ public class Movement : MonoBehaviour
         rbod1.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rbod1.velocity.y);
 
 
+<<<<<<< HEAD
         if (Input.GetAxisRaw("Jump") > 0)
 
         print(Input.GetButton("Jump"));
+=======
+        Dash();
+        Jump();
+    }
+
+>>>>>>> 447a8af48522748cb08b854db8edd3d345be6e77
 
 
+    void Jump()
+    {
         //If you jump while grounded...
         if (Input.GetButton("Jump") && isGrounded == true)
         {
@@ -61,8 +71,31 @@ public class Movement : MonoBehaviour
         {
             isJumping = false;
         }
+    }
 
 
+<<<<<<< HEAD
+=======
+    void Dash()
+    {
+        if (Input.GetAxis("Horizontal") > 0)
+        {
+            if (Input.GetButtonDown("Fire2"))
+            {
+                transform.position = new Vector2(0, 0);
+                print("benis2");
+            }
+        }
+
+        if (Input.GetAxis("Horizontal") < 0)
+        {
+            if (Input.GetButtonDown("Fire2"))
+            {
+                rbod1.AddForce(Vector2.left * 20);
+                print("benis1");
+            }
+        }
+>>>>>>> 447a8af48522748cb08b854db8edd3d345be6e77
     }
 
 
@@ -71,8 +104,11 @@ public class Movement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        isGrounded = true;
-        isJumping = false;
+        if (collision.tag == "Ground")
+        {
+            isGrounded = true;
+            isJumping = false;
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
