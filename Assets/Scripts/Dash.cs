@@ -10,35 +10,43 @@ public class Dash : MonoBehaviour
     public float dashTimeStart;
     private int direction;
     private bool isDashing;
+    public Dash dash;
 
     private void Start()
     {
         rbodyDash = GetComponent<Rigidbody2D>();
         dashTime = dashTimeStart;
         isDashing = false;
+        dash = GetComponent<Dash>();
     }
 
+   
 
-
-    private void Update()
+    void FixedUpdate()
     {
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetAxis("Horizontal") > 0)
         {
-            if (Input.GetAxis("Horizontal") > 0)
+            if (Input.GetButtonDown("Fire2"))
             {
-                rbodyDash.AddForce(Vector2.right * 10);
+                rbodyDash.AddForce(Vector2.right * 200);
+                print("benis2");
             }
         }
 
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetAxis("Horizontal") < 0)
         {
-            if (Input.GetAxis("Horizontal") < 0)
+            if (Input.GetButtonDown("Fire2"))
             {
-
+                rbodyDash.AddForce(Vector2.left * 200);
+                print("benis1");
             }
         }
 
 
+    }
+
+    void OldDash()
+    {
         if (direction == 0)
         {
             if (Input.GetKeyDown(KeyCode.Q))

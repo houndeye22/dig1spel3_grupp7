@@ -25,8 +25,12 @@ public class Movement : MonoBehaviour
     {
         rbod1.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rbod1.velocity.y);
 
+
+        Dash();
         Jump();
     }
+
+
 
     void Jump()
     {
@@ -60,13 +64,38 @@ public class Movement : MonoBehaviour
     }
 
 
+    void Dash()
+    {
+        if (Input.GetAxis("Horizontal") > 0)
+        {
+            if (Input.GetButtonDown("Fire2"))
+            {
+                transform.position = new Vector2(0, 0);
+                print("benis2");
+            }
+        }
+
+        if (Input.GetAxis("Horizontal") < 0)
+        {
+            if (Input.GetButtonDown("Fire2"))
+            {
+                rbod1.AddForce(Vector2.left * 20);
+                print("benis1");
+            }
+        }
+    }
+
+
 
     public bool isGrounded;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        isGrounded = true;
-        isJumping = false;
+        if (collision.tag == "Ground")
+        {
+            isGrounded = true;
+            isJumping = false;
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
