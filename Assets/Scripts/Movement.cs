@@ -116,8 +116,6 @@ public class Movement : MonoBehaviour
     }
 
 
-
-
     void Jump1()
     {
 
@@ -166,6 +164,3 @@ public class Movement : MonoBehaviour
         }
     }
 }
-
-
-
