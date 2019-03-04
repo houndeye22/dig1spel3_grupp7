@@ -7,7 +7,6 @@ public class HPScript : MonoBehaviour
     public static int healthRemaining;
     public static int maxHealth = 6;
 
-    private PlayerKnockback knockback;
 
 
     public static bool unTargetable = false;
@@ -15,7 +14,6 @@ public class HPScript : MonoBehaviour
     void Start()
     {
         healthRemaining = maxHealth;
-        knockback = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerKnockback>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -24,9 +22,7 @@ public class HPScript : MonoBehaviour
         {
             healthRemaining--;
             unTargetable = true;
-            Invoke("Targetable", 1.5f);
-
-            StartCoroutine(knockback.Knockback(0.02f, 300f, knockback.transform.position));
+            Invoke("Targetable", 1f);
         }
         if (collision.tag == " Health" && healthRemaining < maxHealth)
         {
