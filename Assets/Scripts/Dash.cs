@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class Dash : MonoBehaviour
 {
+    private Movement mov;
     private Rigidbody2D rbodyDash;
     public float dashSpeed;
     private float dashTime;
     public float dashTimeStart;
     private int direction;
-    private bool isDashing;
+    //private bool isDashing;
     public Dash dash;
 
     private void Start()
     {
         rbodyDash = GetComponent<Rigidbody2D>();
         dashTime = dashTimeStart;
-        isDashing = false;
+        //isDashing = false;
         dash = GetComponent<Dash>();
+        mov = GetComponent<Movement>();
     }
 
    
@@ -28,7 +30,7 @@ public class Dash : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire2"))
             {
-                rbodyDash.AddForce(Vector2.right * 200);
+                rbodyDash.AddForce(Vector3.right * 200);
                 print("benis2");
             }
         }
@@ -37,7 +39,7 @@ public class Dash : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire2"))
             {
-                rbodyDash.AddForce(Vector2.left * 200);
+                rbodyDash.AddForce(Vector3.left * 200);
                 print("benis1");
             }
         }
@@ -52,12 +54,12 @@ public class Dash : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 direction = 1;
-                isDashing = true;
+                //isDashing = true;
             }
             else if (Input.GetKeyDown(KeyCode.E))
             {
                 direction = 2;
-                isDashing = true;
+                //isDashing = true;
             }
         }
         else
@@ -65,7 +67,7 @@ public class Dash : MonoBehaviour
             if (dashTime < 0)
             {
                 direction = 0;
-                isDashing = false;
+                //isDashing = false;
                 dashTime = dashTimeStart;
                 rbodyDash.velocity = Vector2.zero;
             }

@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
+    public GroundCheck gCheck;
     Rigidbody2D rbod1;
     public int moveSpeed = 10;
     public float jumpThrust = 30;
@@ -14,19 +16,48 @@ public class Movement : MonoBehaviour
     public bool isJumping;
     public bool hasJumped;
 
+    public int dashSpeed;
+    public bool canDash;
+    public float dashTimerRecharge;
+    public float dashTimerMaxRecharge;
+    public bool isDashing;
+
+    public float dashTimer;
+    public float dashTimerMax;
+
+    public Slider slider;
+
+
+
+
+
+    public float gaming1;
+
 
     void Start()
     {
         rbod1 = GetComponent<Rigidbody2D>();
+        //gCheck = GetComponent<GroundCheck>();
         rbod1.gravityScale = 6;
+    }
+
+    private void Update()
+    {
+
     }
 
     void FixedUpdate()
     {
         rbod1.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rbod1.velocity.y);
 
+        slider.value = dashTimer;
 
+        if (dashTimer >= dashTimerMax)
+        {
+            canDash = false;
+        }
         Dash();
+        DashTimerCountdownRecharge();
         Jump();
     }
 
@@ -35,7 +66,7 @@ public class Movement : MonoBehaviour
     void Jump()
     {
         //If you jump while grounded...
-        if (Input.GetButton("Jump") && isGrounded == true)
+        if (Input.GetButton("Jump") && gCheck.isGrounded == true)
         {
             isJumping = true;
             rbod1.velocity = new Vector2(rbod1.velocity.x, jumpThrust / 7);
@@ -49,7 +80,7 @@ public class Movement : MonoBehaviour
                 jumpTime -= Time.deltaTime;
             }
         }
-        if (isGrounded == true)
+        if (gCheck.isGrounded == true)
         {
             jumpTime = jumpMax;
         }
@@ -66,43 +97,42 @@ public class Movement : MonoBehaviour
 
     void Dash()
     {
-        if (Input.GetAxis("Horizontal") > 0)
+        if (Input.GetAxis("Horizontal") > 0 && Input.GetButton("Fire2"))
         {
-            if (Input.GetButtonDown("Fire2"))
+            if (canDash == true)
             {
-                transform.position = new Vector2(0, 0);
-                print("benis2");
+                DashableCountdown();
+                rbod1.velocity = Vector3.Lerp(new Vector3(1, 0), new Vector3(dashSpeed, 0), 0.125f);
             }
         }
-
-        if (Input.GetAxis("Horizontal") < 0)
+        if (Input.GetAxis("Horizontal") < 0 && Input.GetButton("Fire2"))
         {
-            if (Input.GetButtonDown("Fire2"))
+            if (canDash == true)
             {
-                rbod1.AddForce(Vector2.left * 20);
-                print("benis1");
+                DashableCountdown();
+                rbod1.velocity = Vector3.Lerp(new Vector3(1, 0), new Vector3(-dashSpeed, 0), 0.125f);
             }
         }
     }
 
-
-
-    public bool isGrounded;
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    void DashTimerCountdownRecharge()
     {
-        if (collision.tag == "Ground")
+        dashTimerRecharge += Time.deltaTime;
+        if (dashTimerRecharge >= dashTimerMaxRecharge)
         {
-            isGrounded = true;
-            isJumping = false;
+            canDash = true;
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
+
+    void DashableCountdown()
     {
-        isGrounded = false;
+        if (canDash == true)
+        {
+            dashTimer += Time.deltaTime;
+            if (dashTimer >= dashTimerMax)
+            {
+                canDash = false;
+            }
+        }
     }
-
-
-
-
 }
