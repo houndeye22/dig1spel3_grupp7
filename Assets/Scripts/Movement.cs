@@ -10,6 +10,8 @@ public class Movement : MonoBehaviour
     public int moveSpeed = 10;
     public float jumpThrust = 30;
 
+    public static bool canMove;
+
     public float jumpMax = 0.3f;
     public float jumpTime;
 
@@ -19,19 +21,10 @@ public class Movement : MonoBehaviour
     public int dashSpeed;
     public bool canDash;
     public float dashTimerRecharge;
-    public float dashTimerMaxRecharge;
+    public float dashTimerMaxRecharge = 1;
     public bool isDashing;
 
-    public float dashTimer;
-    public float dashTimerMax;
-
     public Slider slider;
-
-
-
-
-
-    public float gaming1;
 
 
     void Start()
@@ -39,6 +32,8 @@ public class Movement : MonoBehaviour
         rbod1 = GetComponent<Rigidbody2D>();
         //gCheck = GetComponent<GroundCheck>();
         rbod1.gravityScale = 6;
+        dashTimerRecharge = 0;
+        canMove = true;
     }
 
     private void Update()
@@ -48,17 +43,21 @@ public class Movement : MonoBehaviour
 
     void FixedUpdate()
     {
-        rbod1.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rbod1.velocity.y);
 
-        slider.value = dashTimer;
 
-        if (dashTimer >= dashTimerMax)
+        slider.value = dashTimerRecharge;
+
+        if(gCheck.isGrounded == true)
         {
-            canDash = false;
+            isDashing = false;
         }
-        Dash();
-        DashTimerCountdownRecharge();
-        Jump();
+
+        if (canMove == true)
+        {
+            Jump();
+            Dash();
+            rbod1.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rbod1.velocity.y);
+        }
     }
 
 
@@ -97,41 +96,29 @@ public class Movement : MonoBehaviour
 
     void Dash()
     {
+
+        dashTimerRecharge += Time.deltaTime;
+        if (dashTimerRecharge <= dashTimerMaxRecharge)
+        {
+            canDash = true;
+        }
+
         if (Input.GetAxis("Horizontal") > 0 && Input.GetButton("Fire2"))
         {
+            dashTimerRecharge += Time.deltaTime;
             if (canDash == true)
             {
-                DashableCountdown();
+                isDashing = true;
                 rbod1.velocity = Vector3.Lerp(new Vector3(1, 0), new Vector3(dashSpeed, 0), 0.125f);
             }
         }
         if (Input.GetAxis("Horizontal") < 0 && Input.GetButton("Fire2"))
         {
+            dashTimerRecharge += Time.deltaTime;
             if (canDash == true)
             {
-                DashableCountdown();
+                isDashing = true;
                 rbod1.velocity = Vector3.Lerp(new Vector3(1, 0), new Vector3(-dashSpeed, 0), 0.125f);
-            }
-        }
-    }
-
-    void DashTimerCountdownRecharge()
-    {
-        dashTimerRecharge += Time.deltaTime;
-        if (dashTimerRecharge >= dashTimerMaxRecharge)
-        {
-            canDash = true;
-        }
-    }
-
-    void DashableCountdown()
-    {
-        if (canDash == true)
-        {
-            dashTimer += Time.deltaTime;
-            if (dashTimer >= dashTimerMax)
-            {
-                canDash = false;
             }
         }
     }
