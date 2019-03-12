@@ -26,16 +26,15 @@ public class Movement : MonoBehaviour
         rbod1.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rbod1.velocity.y);
 
 
-<<<<<<< HEAD
+
         if (Input.GetAxisRaw("Jump") > 0)
 
         print(Input.GetButton("Jump"));
-=======
         Dash();
         Jump();
     }
 
->>>>>>> 447a8af48522748cb08b854db8edd3d345be6e77
+
 
 
     void Jump()
@@ -74,8 +73,7 @@ public class Movement : MonoBehaviour
     }
 
 
-<<<<<<< HEAD
-=======
+
     void Dash()
     {
         if (Input.GetAxis("Horizontal") > 0)
@@ -95,7 +93,6 @@ public class Movement : MonoBehaviour
                 print("benis1");
             }
         }
->>>>>>> 447a8af48522748cb08b854db8edd3d345be6e77
     }
 
 
