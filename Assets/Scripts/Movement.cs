@@ -16,13 +16,15 @@ public class Movement : MonoBehaviour
     public float jumpTime;
 
     public bool isJumping;
-    public bool hasJumped;
 
-    public int dashSpeed;
+    public Vector2 dashSpeed;
     public bool canDash;
-    public float dashTimerRecharge;
-    public float dashTimerMaxRecharge = 1;
     public bool isDashing;
+
+    public float dashTimer;
+    public float dashTimerMax;
+
+    public int dashKeystrokeCounter;
 
     public Slider slider;
 
@@ -32,31 +34,57 @@ public class Movement : MonoBehaviour
         rbod1 = GetComponent<Rigidbody2D>();
         //gCheck = GetComponent<GroundCheck>();
         rbod1.gravityScale = 6;
-        dashTimerRecharge = 0;
+
         canMove = true;
+        canDash = true;
     }
 
     private void Update()
     {
-
+        if (Input.GetButtonUp("Fire2"))
+        {
+            dashKeystrokeCounter += 1;
+        }
     }
 
     void FixedUpdate()
     {
 
 
-        slider.value = dashTimerRecharge;
+        slider.value = dashTimer;
 
-        if(gCheck.isGrounded == true)
+        if (gCheck.isGrounded == true)
         {
             isDashing = false;
         }
 
         if (canMove == true)
         {
-            Jump();
-            Dash();
+
+            DashHandler();
+
+            if (isDashing == false)
+            {
+                Jump();
+            }
+
+
+            //Normal movement
             rbod1.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rbod1.velocity.y);
+
+            if (canDash == true)
+            {
+                Dash();
+            }
+            if (gCheck.isGrounded == true)
+            {
+                dashKeystrokeCounter = 0;
+            }
+        }
+
+        if (Input.GetButtonUp("Fire2") && dashKeystrokeCounter >= 1)
+        {
+            canDash = false;
         }
     }
 
@@ -97,29 +125,70 @@ public class Movement : MonoBehaviour
     void Dash()
     {
 
-        dashTimerRecharge += Time.deltaTime;
-        if (dashTimerRecharge <= dashTimerMaxRecharge)
+
+        if (dashKeystrokeCounter >= 1)
+        {
+            canDash = false;
+        }
+        else
         {
             canDash = true;
         }
 
         if (Input.GetAxis("Horizontal") > 0 && Input.GetButton("Fire2"))
         {
-            dashTimerRecharge += Time.deltaTime;
-            if (canDash == true)
+            if (dashTimer <= dashTimerMax && canDash == true)
             {
-                isDashing = true;
-                rbod1.velocity = Vector3.Lerp(new Vector3(1, 0), new Vector3(dashSpeed, 0), 0.125f);
+                dashTimer += Time.deltaTime;
+                if (canDash == true)
+                {
+                    isDashing = true;
+                    rbod1.MovePosition(rbod1.position + dashSpeed * Time.deltaTime);
+                }
             }
+
         }
         if (Input.GetAxis("Horizontal") < 0 && Input.GetButton("Fire2"))
         {
-            dashTimerRecharge += Time.deltaTime;
-            if (canDash == true)
+            if (dashTimer <= dashTimerMax && canDash == true)
             {
-                isDashing = true;
-                rbod1.velocity = Vector3.Lerp(new Vector3(1, 0), new Vector3(-dashSpeed, 0), 0.125f);
+                dashTimer += Time.deltaTime;
+                if (canDash == true)
+                {
+                    isDashing = true;
+                    rbod1.MovePosition(rbod1.position - dashSpeed * Time.deltaTime);
+                }
+            }
+
+        }
+    }
+
+    void DashHandler()
+    {
+        if (dashTimer > dashTimerMax)
+        {
+            canDash = false;
+        }
+        if (dashTimer <= dashTimerMax)
+        {
+            canDash = true;
+        }
+        else
+        {
+            canDash = false;
+        }
+
+        if (dashKeystrokeCounter <= 1)
+        {
+            if (gCheck.isGrounded == true && dashTimer >= 0)
+            {
+                dashTimer -= Time.deltaTime / 10;
+            }
+            if (isJumping == true && dashTimer >= 0)
+            {
+                dashTimer -= Time.deltaTime / 10;
             }
         }
+
     }
 }
