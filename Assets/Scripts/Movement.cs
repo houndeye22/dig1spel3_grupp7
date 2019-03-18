@@ -1,37 +1,100 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
+    public GroundCheck gCheck;
     Rigidbody2D rbod1;
     public int moveSpeed = 10;
     public float jumpThrust = 30;
+
+    public static bool canMove;
 
     public float jumpMax = 0.3f;
     public float jumpTime;
 
     public bool isJumping;
-    public bool hasJumped;
+
+    public Vector2 dashSpeed;
+    public bool canDash;
+    public bool isDashing;
+
+    public float dashTimer;
+    public float dashTimerMax;
+
+    public int dashKeystrokeCounter;
+
+    public Slider slider;
 
 
     void Start()
     {
         rbod1 = GetComponent<Rigidbody2D>();
+        //gCheck = GetComponent<GroundCheck>();
         rbod1.gravityScale = 6;
+
+        canMove = true;
+        canDash = true;
+    }
+
+    private void Update()
+    {
+        if (Input.GetButtonUp("Fire2"))
+        {
+            dashKeystrokeCounter += 1;
+        }
     }
 
     void FixedUpdate()
     {
-        rbod1.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rbod1.velocity.y);
 
 
+<<<<<<< HEAD
 
         if (Input.GetAxisRaw("Jump") > 0)
 
         print(Input.GetButton("Jump"));
         Dash();
         Jump();
+=======
+        slider.value = dashTimer;
+
+        if (gCheck.isGrounded == true)
+        {
+            isDashing = false;
+        }
+
+        if (canMove == true)
+        {
+
+            DashHandler();
+
+            if (isDashing == false)
+            {
+                Jump();
+            }
+
+
+            //Normal movement
+            rbod1.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rbod1.velocity.y);
+
+            if (canDash == true)
+            {
+                Dash();
+            }
+            if (gCheck.isGrounded == true)
+            {
+                dashKeystrokeCounter = 0;
+            }
+        }
+
+        if (Input.GetButtonUp("Fire2") && dashKeystrokeCounter >= 1)
+        {
+            canDash = false;
+        }
+>>>>>>> 4f953382c174d0207ff561c992960019afbdfdce
     }
 
 
@@ -40,7 +103,7 @@ public class Movement : MonoBehaviour
     void Jump()
     {
         //If you jump while grounded...
-        if (Input.GetButton("Jump") && isGrounded == true)
+        if (Input.GetButton("Jump") && gCheck.isGrounded == true)
         {
             isJumping = true;
             rbod1.velocity = new Vector2(rbod1.velocity.x, jumpThrust / 7);
@@ -54,11 +117,15 @@ public class Movement : MonoBehaviour
                 jumpTime -= Time.deltaTime;
             }
         }
+<<<<<<< HEAD
 
 
         Jump1();
 
         if (isGrounded == true)
+=======
+        if (gCheck.isGrounded == true)
+>>>>>>> 4f953382c174d0207ff561c992960019afbdfdce
         {
             jumpTime = jumpMax;
         }
@@ -76,36 +143,60 @@ public class Movement : MonoBehaviour
 
     void Dash()
     {
-        if (Input.GetAxis("Horizontal") > 0)
+
+
+        if (dashKeystrokeCounter >= 1)
         {
-            if (Input.GetButtonDown("Fire2"))
-            {
-                transform.position = new Vector2(0, 0);
-                print("benis2");
-            }
+            canDash = false;
+        }
+        else
+        {
+            canDash = true;
         }
 
-        if (Input.GetAxis("Horizontal") < 0)
+        if (Input.GetAxis("Horizontal") > 0 && Input.GetButton("Fire2"))
         {
-            if (Input.GetButtonDown("Fire2"))
+            if (dashTimer <= dashTimerMax && canDash == true)
             {
-                rbod1.AddForce(Vector2.left * 20);
-                print("benis1");
+                dashTimer += Time.deltaTime;
+                if (canDash == true)
+                {
+                    isDashing = true;
+                    rbod1.MovePosition(rbod1.position + dashSpeed * Time.deltaTime);
+                }
             }
+
+        }
+        if (Input.GetAxis("Horizontal") < 0 && Input.GetButton("Fire2"))
+        {
+            if (dashTimer <= dashTimerMax && canDash == true)
+            {
+                dashTimer += Time.deltaTime;
+                if (canDash == true)
+                {
+                    isDashing = true;
+                    rbod1.MovePosition(rbod1.position - dashSpeed * Time.deltaTime);
+                }
+            }
+
         }
     }
 
-
-
-    public bool isGrounded;
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    void DashHandler()
     {
-        if (collision.tag == "Ground")
+        if (dashTimer > dashTimerMax)
         {
-            isGrounded = true;
-            isJumping = false;
+            canDash = false;
         }
+        if (dashTimer <= dashTimerMax)
+        {
+            canDash = true;
+        }
+        else
+        {
+            canDash = false;
+        }
+<<<<<<< HEAD
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -159,5 +250,20 @@ public class Movement : MonoBehaviour
                 isJumping = false;
             }
         }
+=======
+
+        if (dashKeystrokeCounter <= 1)
+        {
+            if (gCheck.isGrounded == true && dashTimer >= 0)
+            {
+                dashTimer -= Time.deltaTime / 10;
+            }
+            if (isJumping == true && dashTimer >= 0)
+            {
+                dashTimer -= Time.deltaTime / 10;
+            }
+        }
+
+>>>>>>> 4f953382c174d0207ff561c992960019afbdfdce
     }
 }
