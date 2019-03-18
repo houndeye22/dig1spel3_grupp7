@@ -9,13 +9,13 @@ public class Dash : MonoBehaviour
     private float dashTime;
     public float dashTimeStart;
     private int direction;
-    private bool isDashing;
+    //private bool isDashing;
 
     private void Start()
     {
         rbodyDash = GetComponent<Rigidbody2D>();
         dashTime = dashTimeStart;
-        isDashing = false;
+        //isDashing = false;
     }
 
 
@@ -40,12 +40,12 @@ public class Dash : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 direction = 1;
-                isDashing = true;
+                //isDashing = true;
             }
             else if (Input.GetKeyDown(KeyCode.E))
             {
                 direction = 2;
-                isDashing = true;
+                //isDashing = true;
             }
         }
         else
@@ -53,7 +53,7 @@ public class Dash : MonoBehaviour
             if (dashTime < 0)
             {
                 direction = 0;
-                isDashing = false;
+                //isDashing = false;
                 dashTime = dashTimeStart;
                 rbodyDash.velocity = Vector2.zero;
             }

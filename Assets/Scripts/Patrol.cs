@@ -20,17 +20,20 @@ public class Patrol : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector2.right * speed * Time.deltaTime);
+        if(EnemyKnockback.enemyCanMove == true && EnemyHealth.enemyCurrentHealth > 0)
+        {
+            transform.Translate(Vector2.right * speed * Time.deltaTime);
 
-        if(left == true)
-        {
-            transform.eulerAngles = new Vector3(0, -180, 0);
-            movingRight = false;
-        }
-        else
-        {
-            transform.eulerAngles = new Vector3(0, 0, 0);
-            movingRight = true;
+            if (left == true)
+            {
+                transform.eulerAngles = new Vector3(0, -180, 0);
+                movingRight = false;
+            }
+            else
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+                movingRight = true;
+            }
         }
     }
 }

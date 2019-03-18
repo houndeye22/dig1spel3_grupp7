@@ -11,7 +11,7 @@ public class KnockbackOnCollision : MonoBehaviour
         rbody = GetComponent<Rigidbody2D>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    /*private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Enemy" && HPScript.unTargetable == false && collision.transform.position.x < transform.position.x)
         {
@@ -30,5 +30,5 @@ public class KnockbackOnCollision : MonoBehaviour
     public void CanMoveAgain()
     {
         Movement.canMove = true;
-    }
+    }*/
 }
