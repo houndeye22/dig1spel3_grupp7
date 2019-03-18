@@ -31,7 +31,7 @@ public class Pause : MonoBehaviour
             Deactivate();
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             isPaused = !isPaused;
         }
