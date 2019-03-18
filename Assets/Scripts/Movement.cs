@@ -180,11 +180,11 @@ public class Movement : MonoBehaviour
 
         if (dashKeystrokeCounter <= 1)
         {
-            if (gCheck.isGrounded == true && dashTimer >= 0)
+            if (gCheck.isGrounded == true && dashTimer >= 0 && !Input.GetButton("Fire2"))
             {
                 dashTimer -= Time.deltaTime / 10;
             }
-            if (isJumping == true && dashTimer >= 0)
+            if (isJumping == true && dashTimer >= 0 && !Input.GetButton("Fire2"))
             {
                 dashTimer -= Time.deltaTime / 10;
             }
