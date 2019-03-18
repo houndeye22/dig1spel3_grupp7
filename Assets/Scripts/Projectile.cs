@@ -5,15 +5,10 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
 
-    public float speed = 3;
-
-    void Start()
-    {
-        
-    }
+    public float speed;
 
     void Update()
     {
-        transform.Translate(transform.up * speed * Time.deltaTime);
+        transform.Translate(Vector2.up * speed * Time.deltaTime);
     }
 }

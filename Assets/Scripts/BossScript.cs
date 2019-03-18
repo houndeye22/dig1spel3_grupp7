@@ -6,17 +6,20 @@ public class BossScript : MonoBehaviour
 {
     public Rigidbody2D bossBody;
 
+    public ProjectileDirection1 projectileDirection;
     public float jumpHight;
     public float JumpLenght;
     public int timesJumped;
     public int onGround;
     public int nextAction;
 
+    public int shots;
+    public float timeBetweenShot;
+    public float startTimeBetweenShot = 0.5f;
+
     public int heal = 2;
 
-    public GameObject shotPoint;
     public GameObject player;
-    public GameObject projectile;
 
 
     void Start()
@@ -37,22 +40,20 @@ public class BossScript : MonoBehaviour
         {
             bossBody.velocity = new Vector2 (-JumpLenght, jumpHight);
             timesJumped++;
-            Invoke("NextAction", 5);
             onGround = 0;
         }
         if (player.transform.position.x > transform.position.x && timesJumped == 0 && onGround >= 1)
         {
             bossBody.velocity = new Vector2(JumpLenght, jumpHight);
             timesJumped++;
-            Invoke("NextAction", 5);
             onGround = 0;
         }
+        Invoke("NextAction", 5);
     }
     
     void Attack()
     {
-        Instantiate(projectile, shotPoint.transform.position, transform.rotation);
-        print("Attack");
+        projectileDirection.Bullet();
         Invoke("NextAction", 5);
     }
 
@@ -74,17 +75,18 @@ public class BossScript : MonoBehaviour
     void NextAction()
     {
         EnemyHealth.invulnerable = false;
-        nextAction = Random.Range(0, 3);
+        nextAction = Random.Range(0, 5);
         timesJumped = 0;
-        if (nextAction == 0)
+        shots = 0;
+        if (nextAction == 0 || nextAction == 3)
         {
             Jumping();
         }
-        else if(nextAction == 1)
+        else if(nextAction == 1 || nextAction == 2)
         {
             Attack();
         }
-        else if( nextAction == 2)
+        else if( nextAction == 4)
         {
             Regenerate();
         }
@@ -99,6 +101,3 @@ public class BossScript : MonoBehaviour
         }
     }
 }
-
-
-//bossCol.gameObject.tag == "Ground" && 
