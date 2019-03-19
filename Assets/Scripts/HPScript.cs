@@ -8,6 +8,7 @@ public class HPScript : MonoBehaviour
     public static int maxHealth = 6;
 
 
+
     public static bool unTargetable = false;
 
     void Start()
@@ -17,11 +18,11 @@ public class HPScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Enemy" && unTargetable == false)
+        if (collision.tag == "Enemy" && unTargetable == false && PlayerAttack.noDmg == false)
         {
             healthRemaining--;
             unTargetable = true;
-            Invoke("Targetable", 1.5f);
+            Invoke("Targetable", 1f);
         }
         if (collision.tag == " Health" && healthRemaining < maxHealth)
         {

@@ -5,26 +5,53 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public int maxHealth;
-    public int currentHealth;
+    public static int enemyCurrentHealth;
+    public static int enemyMaxHealth;
+    public static bool invulnerable = false;
+
+    private BoxCollider2D boxCol;
+    private CircleCollider2D cirCol;
+    private SpriteRenderer rend;
 
     private void Start()
     {
-        currentHealth = maxHealth;
+        enemyCurrentHealth = maxHealth;
+        enemyMaxHealth = maxHealth;
+        boxCol = GetComponent<BoxCollider2D>();
+        cirCol = GetComponent<CircleCollider2D>();
+        rend = GetComponent<SpriteRenderer>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Sword")
+        if(invulnerable == false)
         {
-            currentHealth--;
+            if (collision.tag == "Sword")
+            {
+                enemyCurrentHealth--;
+            }
         }
+        
     }
 
     void Update()
     { 
-        if (currentHealth == 0)
+        if (enemyCurrentHealth == 0)
         {
-            Destroy(gameObject);
+            Time.timeScale = 0.3f;
+            Invoke("SetNormalTime", 0.05f);
+            Invoke("DestroyObject", 30f);
+            rend.rendererPriority = -10;
         }
+    }
+
+    void SetNormalTime()
+    {
+        Time.timeScale = 1f;
+    }
+
+    void DestroyObject()
+    {
+        Destroy(gameObject);
     }
 }
