@@ -5,7 +5,9 @@ using UnityEngine;
 public class KnockbackOnCollision : MonoBehaviour
 {
     private Rigidbody2D rbody;
-    
+    public float knockbackPwr = 10;
+    public float knockbackDir = 5;
+
     void Start()
     {
         rbody = GetComponent<Rigidbody2D>();
@@ -16,13 +18,13 @@ public class KnockbackOnCollision : MonoBehaviour
         if (collision.tag == "Enemy" && HPScript.unTargetable == false && collision.transform.position.x < transform.position.x)
         {
             Movement.canMove = false;
-            rbody.velocity = new Vector2(5f, 10f);
+            rbody.velocity = new Vector2(knockbackDir, knockbackPwr);
             Invoke("CanMoveAgain", 0.7f);
         }
         if (collision.tag == "Enemy" && HPScript.unTargetable == false && collision.transform.position.x > transform.position.x)
         {
             Movement.canMove = false;
-            rbody.velocity = new Vector2(-5f, 10f);
+            rbody.velocity = new Vector2(-knockbackDir, knockbackPwr);
             Invoke("CanMoveAgain", 0.7f);
         }
     }

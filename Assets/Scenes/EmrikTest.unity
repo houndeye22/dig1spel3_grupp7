@@ -145,7 +145,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 77527789}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -33.002697, y: 1.0021433, z: 0}
+  m_LocalPosition: {x: -4.5, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children:
   - {fileID: 1311932483}
@@ -320,6 +320,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13e05b9d483fa4d4cb51331230238b94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackPwr: 10
+  knockbackDir: 5
 --- !u!114 &77527799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -896,6 +898,9 @@ MonoBehaviour:
   timesJumped: 0
   onGround: 0
   nextAction: 0
+  shots: 0
+  timeBetweenShot: 0
+  startTimeBetweenShot: 0.5
   heal: 2
   player: {fileID: 77527789}
 --- !u!61 &688095011
@@ -5417,6 +5422,7 @@ GameObject:
   - component: {fileID: 1899461301}
   - component: {fileID: 1899461299}
   - component: {fileID: 1899461300}
+  - component: {fileID: 1899461302}
   m_Layer: 0
   m_Name: Square
   m_TagString: Enemy
@@ -5577,6 +5583,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.10960385}
   serializedVersion: 2
   m_Radius: 0.3907955
+--- !u!114 &1899461302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899461294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fc913c2353437449a4638b94b6df614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackPwr: 5
+  knockbackDir: 3
 --- !u!4 &1945747780 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2352166306776379861, guid: cd19ab3e56c206d4a93384e4949e05e0,

@@ -6,6 +6,8 @@ public class EnemyKnockback : MonoBehaviour
 {
     public static bool enemyCanMove = true;
     private Rigidbody2D rbody;
+    public float knockbackPwr = 5;
+    public float knockbackDir = 3;
 
     void Start()
     {
@@ -17,13 +19,13 @@ public class EnemyKnockback : MonoBehaviour
         if (collision.tag == "Sword" && collision.transform.position.x < transform.position.x)
         {
             enemyCanMove = false;
-            rbody.velocity = new Vector2(5f, 10f);
+            rbody.velocity = new Vector2(knockbackDir, knockbackPwr);
             Invoke("CanMoveAgain", 0.7f);
         }
         if (collision.tag == "Sword" && collision.transform.position.x > transform.position.x)
         {
             enemyCanMove = false;
-            rbody.velocity = new Vector2(-5f, 10f);
+            rbody.velocity = new Vector2(-knockbackDir, knockbackPwr);
             Invoke("CanMoveAgain", 0.7f);
         }
     }
