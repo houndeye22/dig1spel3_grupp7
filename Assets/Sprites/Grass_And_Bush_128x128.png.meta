@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 81e6d7a112208f642b5b44bdce32efc7
+guid: 720fba06dd1c9e74db48829fe4e5e015
 TextureImporter:
   fileIDToRecycleName:
     21300000: Grass_And_Bush_128x128_0
@@ -96,13 +96,13 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 532a12429dd7cf44a9af8919fc7c53d8
+      spriteID: 1f754ff6b63838e45979013cb8193715
       vertices: []
       indices: 
       edges: []
@@ -116,13 +116,13 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c2cccb7591107b48a40477457e7564c
+      spriteID: 6d2f5b94d2199244fbc6aea6eef5fc39
       vertices: []
       indices: 
       edges: []
@@ -136,13 +136,13 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f271733c2c07f2345b1091d04b1e6685
+      spriteID: 3d861b7f8939c2b4ab13ec530983a041
       vertices: []
       indices: 
       edges: []
@@ -156,13 +156,13 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 78fd1f87ec0159b43b37288c6dc63f87
+      spriteID: 29c3b9b8f41b3ea49b4223dd02de0015
       vertices: []
       indices: 
       edges: []
@@ -170,7 +170,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: a651866388e64f44e9730faac70a2315
+    spriteID: 3fb3ddd777ac58841bcbeb6021acd6ce
     vertices: []
     indices: 
     edges: []
