@@ -18,7 +18,7 @@ public class HPScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Enemy" && unTargetable == false)
+        if (collision.tag == "Enemy" && unTargetable == false && PlayerAttack.noDmg == false)
         {
             healthRemaining--;
             unTargetable = true;
