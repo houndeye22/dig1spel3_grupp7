@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
-{ 
+{
     public static bool isAttacking = false;
     public static bool noDmg = false;
-   
-    public float attackCd = 1f;
+
+    public float attackCd;
+
     public float attackTriggerCd = 0.3f;
 
     public GameObject attackTriggerUp;
     public GameObject attackTriggerRight;
-    public GameObject attackTriggerLeft;
+    //public GameObject attackTriggerLeft;
     public GameObject attackTriggerDown;
 
     void Awake()
@@ -20,26 +21,18 @@ public class PlayerAttack : MonoBehaviour
         attackTriggerDown.SetActive(false);
         attackTriggerRight.SetActive(false);
         attackTriggerUp.SetActive(false);
-        attackTriggerLeft.SetActive(false);
+        //attackTriggerLeft.SetActive(false);
     }
 
     void Update()
     {
         //if(Input.GetAxis("") > 0)
 
-        if (Input.GetButtonDown("Fire1") && !isAttacking && Input.GetAxis("Horizontal") > 0)
+        if (Input.GetButtonDown("Fire1") && !isAttacking)// && Input.GetAxis("Horizontal") > 0)
         {
             isAttacking = true;
             noDmg = true;
             attackTriggerRight.SetActive(true);
-            Invoke("CanAttack", attackCd);
-            Invoke("AttackTriggerActive", attackTriggerCd);
-        }
-        else if (Input.GetButtonDown("Fire1") && !isAttacking && Input.GetAxis("Horizontal") < 0)
-        {
-            isAttacking = true;
-            noDmg = true;
-            attackTriggerLeft.SetActive(true);
             Invoke("CanAttack", attackCd);
             Invoke("AttackTriggerActive", attackTriggerCd);
         }
@@ -72,7 +65,18 @@ public class PlayerAttack : MonoBehaviour
         attackTriggerDown.SetActive(false);
         attackTriggerRight.SetActive(false);
         attackTriggerUp.SetActive(false);
-        attackTriggerLeft.SetActive(false);
+        //attackTriggerLeft.SetActive(false);
     }
-
 }
+
+
+       /*else if (Input.GetButtonDown("Fire1") && !isAttacking && Input.GetAxis("Horizontal") < 0)
+        {
+            isAttacking = true;
+            noDmg = true;
+            attackTriggerLeft.SetActive(true);
+            Invoke("CanAttack", attackCd);
+Invoke("AttackTriggerActive", attackTriggerCd);
+        }*/
+
+

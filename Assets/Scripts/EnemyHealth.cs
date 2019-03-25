@@ -6,6 +6,7 @@ public class EnemyHealth : MonoBehaviour
 {
     public int maxHealth;
     public static int enemyCurrentHealth;
+    public static int bossCurrentHealth;
     public static int enemyMaxHealth;
     public static bool invulnerable = false;
 
@@ -16,6 +17,7 @@ public class EnemyHealth : MonoBehaviour
     private void Start()
     {
         enemyCurrentHealth = maxHealth;
+        bossCurrentHealth = maxHealth;
         enemyMaxHealth = maxHealth;
         boxCol = GetComponent<BoxCollider2D>();
         cirCol = GetComponent<CircleCollider2D>();
@@ -29,19 +31,19 @@ public class EnemyHealth : MonoBehaviour
             if (collision.tag == "Sword")
             {
                 enemyCurrentHealth--;
+                print(enemyCurrentHealth);
             }
         }
-        
     }
 
     void Update()
     { 
-        if (enemyCurrentHealth == 0)
+        if (enemyCurrentHealth <= 0)
         {
-            Time.timeScale = 0.3f;
-            Invoke("SetNormalTime", 0.05f);
-            Invoke("DestroyObject", 30f);
-            rend.rendererPriority = -10;
+            //Time.timeScale = 0.3f;
+            //Invoke("SetNormalTime", 0.05f);
+            Invoke("DestroyObject", 1f);
+            //rend.rendererPriority = -10;
         }
     }
 
@@ -53,5 +55,11 @@ public class EnemyHealth : MonoBehaviour
     void DestroyObject()
     {
         Destroy(gameObject);
+    }
+
+    public void TakeDmg()
+    {
+        enemyCurrentHealth--;
+        print(enemyCurrentHealth);
     }
 }
