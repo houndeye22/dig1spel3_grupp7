@@ -7,27 +7,21 @@ public class Pause : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private bool isPaused;
 
-    private void Start()
-    {
-        pauseMenu.SetActive(false);
-    }
+  
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            isPaused = !isPaused;
-        }
+        
 
         if (isPaused)
         {
-
+            print("Okay done");
             ActivateMenu();
         }
 
         else
         {
-
+            print("Okay mode");
             Deactivate();
         }
 
@@ -53,7 +47,7 @@ public class Pause : MonoBehaviour
     {
         Time.timeScale = 0;
         pauseMenu.SetActive(true);
-
+        
     }
 
     public void Deactivate()
