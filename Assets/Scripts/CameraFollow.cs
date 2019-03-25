@@ -7,7 +7,7 @@ public class CameraFollow : MonoBehaviour
 
     public Transform target;
     public Vector3 offset;
-    public float smoothSpeed;
+    public float smoothSpeed = 0.125f;
 
     public BoxCollider2D boundBox;
     private Vector3 minBounds;
