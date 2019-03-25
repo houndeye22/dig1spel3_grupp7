@@ -25,7 +25,7 @@ public class BossScript : MonoBehaviour
     void Start()
     {
         bossBody = GetComponent<Rigidbody2D>();
-        Invoke("NextAction", 3);
+        //Invoke("NextAction", 3);
     }
 
     
@@ -64,9 +64,9 @@ public class BossScript : MonoBehaviour
 
         for(int i = 0; i < heal; i++)
         {
-            if(EnemyHealth.enemyCurrentHealth < EnemyHealth.enemyMaxHealth)
+            if(EnemyHealth.bossCurrentHealth < EnemyHealth.enemyMaxHealth)
             {
-                EnemyHealth.enemyCurrentHealth++;
+                EnemyHealth.bossCurrentHealth++;
             }
         }
         Invoke("NextAction", 5);

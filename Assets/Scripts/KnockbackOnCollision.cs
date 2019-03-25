@@ -13,15 +13,15 @@ public class KnockbackOnCollision : MonoBehaviour
         rbody = GetComponent<Rigidbody2D>();
     }
 
-    /*private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Enemy" && HPScript.unTargetable == false && collision.transform.position.x < transform.position.x)
+        if (collision.tag == "Enemy" && HPScript.unTargetable == false && collision.transform.position.x < transform.position.x && PlayerAttack.noDmg == false)
         {
             Movement.canMove = false;
             rbody.velocity = new Vector2(knockbackDir, knockbackPwr);
             Invoke("CanMoveAgain", 0.7f);
         }
-        if (collision.tag == "Enemy" && HPScript.unTargetable == false && collision.transform.position.x > transform.position.x)
+        if (collision.tag == "Enemy" && HPScript.unTargetable == false && collision.transform.position.x > transform.position.x && PlayerAttack.noDmg == false)
         {
             Movement.canMove = false;
             rbody.velocity = new Vector2(-knockbackDir, knockbackPwr);
@@ -32,5 +32,5 @@ public class KnockbackOnCollision : MonoBehaviour
     public void CanMoveAgain()
     {
         Movement.canMove = true;
-    }*/
+    }
 }
