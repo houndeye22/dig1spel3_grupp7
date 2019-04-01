@@ -13,18 +13,6 @@ public class Pause : MonoBehaviour
     {
         
 
-        if (isPaused)
-        {
-            print("Okay done");
-            ActivateMenu();
-        }
-
-        else
-        {
-            print("Okay mode");
-            Deactivate();
-        }
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             isPaused = !isPaused;
