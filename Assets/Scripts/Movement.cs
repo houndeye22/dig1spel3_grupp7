@@ -72,7 +72,7 @@ public class Movement : MonoBehaviour
     void FixedUpdate()
     {
 
-        //slider.value = dashTimer;
+        slider.value = dashTimer;
 
         if (gCheck.isGrounded == true)
         {
@@ -109,7 +109,10 @@ public class Movement : MonoBehaviour
         }
     }
 
-
+    public void OnLanding()
+    {
+        animator.SetBool("isJumping", false);
+    }
 
     void Jump()
     {
@@ -118,6 +121,7 @@ public class Movement : MonoBehaviour
         {
             isJumping = true;
             rbod1.velocity = new Vector2(rbod1.velocity.x, jumpThrust / 7);
+            animator.SetBool("isJumping", true);
 
         }
         //Subtracts a small numeral

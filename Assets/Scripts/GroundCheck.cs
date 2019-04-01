@@ -28,6 +28,8 @@ public class GroundCheck : MonoBehaviour
         {
             isGrounded = true;
             mov.isJumping = false;
+
+            mov.animator.SetBool("isJumping", false);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
