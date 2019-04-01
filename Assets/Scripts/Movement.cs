@@ -56,13 +56,13 @@ public class Movement : MonoBehaviour
         {
             movingRight = true;
             movingLeft = false;
-            transform.localScale = new Vector2(1, transform.localScale.y);
+            transform.localScale = new Vector2(2, transform.localScale.y);
         }
         if (Input.GetAxis("Horizontal") < 0)
         {
             movingRight = false;
             movingLeft = true;
-            transform.localScale = new Vector2(-1, transform.localScale.y);
+            transform.localScale = new Vector2(-2, transform.localScale.y);
         }
 
         animator.SetFloat("Speed", Mathf.Abs(Input.GetAxis("Horizontal")));

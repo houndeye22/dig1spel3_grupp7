@@ -598,7 +598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50646f2f765e0eb42aeddfa579143f74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: EmrikTest
+  sceneToLoad: Level1
 --- !u!114 &688021821
 MonoBehaviour:
   m_ObjectHideFlags: 0
