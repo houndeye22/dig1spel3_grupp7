@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static bool gameIsPaused = false;
-    public GameObject pauseMenuUI;
+    public static bool IsPaused = false;
+    public Animator animator;
+    public float timeSlowed;
+    public float timeSped;
 
     void Update()
     {
         if (Input.GetButtonDown("Pause"))
         {
-            if (gameIsPaused)
+            if (IsPaused == true)
             {
                 Resume();
             }
@@ -19,20 +21,30 @@ public class PauseMenu : MonoBehaviour
             {
                 Pause();
             }
+            TimeHandler();
         }
-    }
 
-    public void Start()
-    {
+        animator.SetBool("ifIsPaused", IsPaused);
     }
 
     public void Resume()
     {
-
+        IsPaused = false;
+        Time.timeScale = 1;
     }
 
     void Pause()
     {
+        IsPaused = true;
+    }
 
+    void Quit()
+    {
+        //Application.Quit();
+    }
+
+    void TimeHandler()
+    {
+        //Mathf.Lerp();
     }
 }

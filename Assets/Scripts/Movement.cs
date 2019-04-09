@@ -109,11 +109,6 @@ public class Movement : MonoBehaviour
         }
     }
 
-    public void OnLanding()
-    {
-        animator.SetBool("isJumping", false);
-    }
-
     void Jump()
     {
         //If you jump while grounded...
