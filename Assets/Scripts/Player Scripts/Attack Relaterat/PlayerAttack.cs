@@ -35,6 +35,8 @@ public class PlayerAttack : MonoBehaviour
             attackTriggerRight.SetActive(true);
             Invoke("CanAttack", attackCd);
             Invoke("AttackTriggerActive", attackTriggerCd);
+            FindObjectOfType<SoundManeger>().Play("SwingSword");
+
         }
         else if (Input.GetButtonDown("Fire1") && !isAttacking && Input.GetAxis("Vertical") > 0)
         {
@@ -43,6 +45,7 @@ public class PlayerAttack : MonoBehaviour
             attackTriggerUp.SetActive(true);
             Invoke("CanAttack", attackCd);
             Invoke("AttackTriggerActive", attackTriggerCd);
+            FindObjectOfType<SoundManeger>().Play("SwingSword");
         }
         else if (Input.GetButtonDown("Fire1") && !isAttacking && Input.GetAxis("Vertical") < 0)
         {
@@ -51,6 +54,7 @@ public class PlayerAttack : MonoBehaviour
             attackTriggerDown.SetActive(true);
             Invoke("CanAttack", attackCd);
             Invoke("AttackTriggerActive", attackTriggerCd);
+            FindObjectOfType<SoundManeger>().Play("SwingSword");
         }
     }
 

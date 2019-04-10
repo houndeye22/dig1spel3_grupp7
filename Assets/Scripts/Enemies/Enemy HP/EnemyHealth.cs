@@ -5,13 +5,13 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public int maxHealth;
-    public static int enemyCurrentHealth;
+    public int enemyCurrentHealth;
     public static int bossCurrentHealth;
     public static int enemyMaxHealth;
     public static bool invulnerable = false;
 
-    private BoxCollider2D boxCol;
-    private CircleCollider2D cirCol;
+    //private BoxCollider2D boxCol;
+    //private CircleCollider2D cirCol;
     private SpriteRenderer rend;
 
     private void Start()
@@ -19,8 +19,8 @@ public class EnemyHealth : MonoBehaviour
         enemyCurrentHealth = maxHealth;
         bossCurrentHealth = maxHealth;
         enemyMaxHealth = maxHealth;
-        boxCol = GetComponent<BoxCollider2D>();
-        cirCol = GetComponent<CircleCollider2D>();
+        //boxCol = GetComponent<BoxCollider2D>();
+        //cirCol = GetComponent<CircleCollider2D>();
         rend = GetComponent<SpriteRenderer>();
     }
 
@@ -30,8 +30,7 @@ public class EnemyHealth : MonoBehaviour
         {
             if (collision.tag == "Sword")
             {
-                enemyCurrentHealth--;
-                print(enemyCurrentHealth);
+                TakeDmg();
             }
         }
     }
@@ -40,10 +39,12 @@ public class EnemyHealth : MonoBehaviour
     { 
         if (enemyCurrentHealth <= 0)
         {
+            //EnemyKnockback.enemyCanMove = false;
             //Time.timeScale = 0.3f;
             //Invoke("SetNormalTime", 0.05f);
             Invoke("DestroyObject", 1f);
             //rend.rendererPriority = -10;
+            
         }
     }
 
@@ -54,6 +55,7 @@ public class EnemyHealth : MonoBehaviour
 
     void DestroyObject()
     {
+        FindObjectOfType<SoundManeger>().Play("EnemyDeath");
         Destroy(gameObject);
     }
 
@@ -61,5 +63,6 @@ public class EnemyHealth : MonoBehaviour
     {
         enemyCurrentHealth--;
         print(enemyCurrentHealth);
+        FindObjectOfType<SoundManeger>().Play("EnemyHit");
     }
 }

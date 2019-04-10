@@ -20,13 +20,13 @@ public class EnemyKnockback : MonoBehaviour
         {
             enemyCanMove = false;
             rbody.velocity = new Vector2(knockbackDir, knockbackPwr);
-            Invoke("CanMoveAgain", 0.7f);
+            Invoke("CanMoveAgain", 1f);
         }
         if (collision.tag == "Sword" && collision.transform.position.x > transform.position.x)
         {
             enemyCanMove = false;
             rbody.velocity = new Vector2(-knockbackDir, knockbackPwr);
-            Invoke("CanMoveAgain", 0.7f);
+            Invoke("CanMoveAgain", 1f);
         }
     }
 

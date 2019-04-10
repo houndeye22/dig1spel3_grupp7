@@ -20,7 +20,7 @@ public class Patrol : MonoBehaviour
 
     void Update()
     {
-        if(EnemyKnockback.enemyCanMove == true && EnemyHealth.enemyCurrentHealth > 0)
+        if(EnemyKnockback.enemyCanMove == true)
         {
             transform.Translate(Vector2.right * speed * Time.deltaTime);
 

@@ -23,6 +23,7 @@ public class HPScript : MonoBehaviour
             healthRemaining--;
             unTargetable = true;
             Invoke("Targetable", 1f);
+            FindObjectOfType<SoundManeger>().Play("PlayerHurt");
         }
         if (collision.tag == " Health" && healthRemaining < maxHealth)
         {
