@@ -33,6 +33,5 @@ public class EnemyKnockback : MonoBehaviour
     public void CanMoveAgain()
     {
         enemyCanMove = true;
-
     }
 }
