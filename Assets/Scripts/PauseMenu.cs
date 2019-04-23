@@ -36,6 +36,7 @@ public class PauseMenu : MonoBehaviour
     void Pause()
     {
         IsPaused = true;
+        Time.timeScale = 0;
     }
 
     void Quit()
