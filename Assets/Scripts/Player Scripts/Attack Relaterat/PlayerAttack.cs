@@ -13,7 +13,6 @@ public class PlayerAttack : MonoBehaviour
 
     public GameObject attackTriggerUp;
     public GameObject attackTriggerRight;
-    //public GameObject attackTriggerLeft;
     public GameObject attackTriggerDown;
 
     void Awake()
@@ -21,14 +20,13 @@ public class PlayerAttack : MonoBehaviour
         attackTriggerDown.SetActive(false);
         attackTriggerRight.SetActive(false);
         attackTriggerUp.SetActive(false);
-        //attackTriggerLeft.SetActive(false);
     }
 
     void Update()
     {
         //if(Input.GetAxis("") > 0)
 
-        if (Input.GetButtonDown("Fire1") && !isAttacking)// && Input.GetAxis("Horizontal") > 0)
+        if (Input.GetButtonDown("Fire1") && !isAttacking)
         {
             isAttacking = true;
             noDmg = true;
@@ -69,18 +67,7 @@ public class PlayerAttack : MonoBehaviour
         attackTriggerDown.SetActive(false);
         attackTriggerRight.SetActive(false);
         attackTriggerUp.SetActive(false);
-        //attackTriggerLeft.SetActive(false);
     }
 }
-
-
-       /*else if (Input.GetButtonDown("Fire1") && !isAttacking && Input.GetAxis("Horizontal") < 0)
-        {
-            isAttacking = true;
-            noDmg = true;
-            attackTriggerLeft.SetActive(true);
-            Invoke("CanAttack", attackCd);
-Invoke("AttackTriggerActive", attackTriggerCd);
-        }*/
 
 

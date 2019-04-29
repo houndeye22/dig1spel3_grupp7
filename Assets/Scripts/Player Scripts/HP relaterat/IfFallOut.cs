@@ -6,7 +6,9 @@ public class IfFallOut : MonoBehaviour
 {
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        HPScript.healthRemaining = 0;
-        
+        if(collision.tag == "Player")
+        {
+            HPScript.healthRemaining = 0;
+        }
     }
 }
