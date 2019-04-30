@@ -5,13 +5,14 @@ using UnityEngine;
 public class ProjectileDirection1 : MonoBehaviour
 {
     public GameObject projectile;
-    public GameObject player;
+    public GameObject target;
     public float offset;
+
     
 
     void Update()
     {
-        Vector3 difference = player.transform.position - transform.position;
+        Vector3 difference = target.transform.position - transform.position;
         float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);
     } 

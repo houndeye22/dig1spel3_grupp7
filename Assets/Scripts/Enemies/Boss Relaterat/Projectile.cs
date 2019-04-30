@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
 {
 
     public float speed;
+    
 
     void Update()
     {
