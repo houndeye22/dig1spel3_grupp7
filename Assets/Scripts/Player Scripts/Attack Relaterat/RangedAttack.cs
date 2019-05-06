@@ -8,6 +8,7 @@ public class RangedAttack : MonoBehaviour
 
     public GameObject spear;
     public Transform throwPoint;
+    public float waitTime;
 
     void Update()
     {
@@ -15,17 +16,25 @@ public class RangedAttack : MonoBehaviour
         float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);
 
-        if (Input.GetButtonDown("Fire1"))
+        if (waitTime <= 0)
         {
-            Instantiate(spear, throwPoint.transform.position, throwPoint.transform.rotation);
+            if (Input.GetButtonDown("Fire1"))
+            {
+                Throw();
+                waitTime = 2.5f;
+            }
         }
+        else
+        {
+            waitTime -= Time.deltaTime;
+        }
+        
     }
 
     public void Throw()
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Instantiate(spear, throwPoint.transform.position, throwPoint.transform.rotation);
-        }
+        
+         Instantiate(spear, throwPoint.transform.position, throwPoint.transform.rotation);
+        
     }
 }

@@ -13,11 +13,10 @@ GameObject:
   - component: {fileID: 7496495079505060873}
   - component: {fileID: 7496495079505060874}
   - component: {fileID: 1094387133}
-  - component: {fileID: 7496495079505060872}
   - component: {fileID: 1094387132}
   m_Layer: 12
   m_Name: Placeholder Spear
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,13 +28,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7496495079505060871}
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 58.87, y: 0.44, z: 4.5735655}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &84297533105556694
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -164,19 +163,6 @@ PolygonCollider2D:
       - {x: 0.30952188, y: 0.34473735}
       - {x: 0.3394629, y: 0.47428435}
       - {x: -0.35951313, y: 0.4772992}
---- !u!114 &7496495079505060872
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7496495079505060871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a88684368bd924a43941e3f9bd2fd65e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
 --- !u!114 &1094387132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,4 +175,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 855dfe67a394b3f48842bcfb8c90229a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 7496495079505060872}
+  projectile: {fileID: 0}
+  speed: 15
+  flyTime: 0

@@ -28,7 +28,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if(invulnerable == false)
         {
-            if (collision.tag == "Sword")
+            if (collision.tag == "Weapon")
             {
                 TakeDmg();
             }

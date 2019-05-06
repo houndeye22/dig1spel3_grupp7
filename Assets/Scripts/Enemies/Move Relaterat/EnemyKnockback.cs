@@ -16,13 +16,13 @@ public class EnemyKnockback : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Sword" && collision.transform.position.x < transform.position.x)
+        if (collision.tag == "Weapon" && collision.transform.position.x < transform.position.x)
         {
             enemyCanMove = false;
             rbody.velocity = new Vector2(knockbackDir, knockbackPwr);
             Invoke("CanMoveAgain", 1f);
         }
-        if (collision.tag == "Sword" && collision.transform.position.x > transform.position.x)
+        if (collision.tag == "Weapon" && collision.transform.position.x > transform.position.x)
         {
             enemyCanMove = false;
             rbody.velocity = new Vector2(-knockbackDir, knockbackPwr);
