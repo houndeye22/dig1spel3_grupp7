@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+
+    public Animator animator;
+
     public static bool isAttacking = false;
     public static bool noDmg = false;
 
@@ -26,6 +29,11 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
+        animator.SetBool("isAttacking", isAttacking);
+
+
+
+
         //if(Input.GetAxis("") > 0)
 
         if (Input.GetButtonDown("Fire1") && !isAttacking)// && Input.GetAxis("Horizontal") > 0)
@@ -70,13 +78,13 @@ public class PlayerAttack : MonoBehaviour
 }
 
 
-       /*else if (Input.GetButtonDown("Fire1") && !isAttacking && Input.GetAxis("Horizontal") < 0)
-        {
-            isAttacking = true;
-            noDmg = true;
-            attackTriggerLeft.SetActive(true);
-            Invoke("CanAttack", attackCd);
+/*else if (Input.GetButtonDown("Fire1") && !isAttacking && Input.GetAxis("Horizontal") < 0)
+ {
+     isAttacking = true;
+     noDmg = true;
+     attackTriggerLeft.SetActive(true);
+     Invoke("CanAttack", attackCd);
 Invoke("AttackTriggerActive", attackTriggerCd);
-        }*/
+ }*/
 
 

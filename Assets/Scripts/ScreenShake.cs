@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ScreenShake : MonoBehaviour
 {
-
     public IEnumerator Shake(float duration, float magnitude)
     {
         Vector3 originalPos = transform.localPosition;
@@ -22,6 +21,7 @@ public class ScreenShake : MonoBehaviour
 
             yield return null;
         }
+
         transform.localPosition = originalPos;
     }
 

@@ -66,6 +66,7 @@ public class Movement : MonoBehaviour
         }
 
         animator.SetFloat("Speed", Mathf.Abs(Input.GetAxis("Horizontal")));
+        animator.SetBool("isDashing", isDashing);
 
     }
 
