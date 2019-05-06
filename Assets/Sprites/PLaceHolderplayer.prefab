@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7552022200982912845}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &7552022199108446056
 CircleCollider2D:
@@ -77,7 +77,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7552022200982912845}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &7552022199684243964
 CircleCollider2D:
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4dcf63c50858db479c7cfc6deae5783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mov: {fileID: 7552022200982912859}
+  mov: {fileID: 0}
   isGrounded: 0
 --- !u!1 &7552022200084022774
 GameObject:
@@ -156,53 +156,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!1 &7552022200412925187
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7552022200412925196}
-  - component: {fileID: 7552022200412925197}
-  m_Layer: 0
-  m_Name: GameObject (1)
-  m_TagString: Sword
-  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7552022200412925196
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7552022200412925187}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7552022200982912845}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &7552022200412925197
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7552022200412925187}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!1 &7552022200519856548
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,7 +185,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7552022200982912845}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &7552022200519856550
 CircleCollider2D:
@@ -261,7 +214,6 @@ GameObject:
   - component: {fileID: 7552022200982912845}
   - component: {fileID: 7552022200982912837}
   - component: {fileID: 7552022200982912836}
-  - component: {fileID: 7552022200982912859}
   - component: {fileID: 7552022200982912838}
   - component: {fileID: 7552022200982912834}
   - component: {fileID: 7552022200982912832}
@@ -289,7 +241,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children:
   - {fileID: 7552022200084022775}
-  - {fileID: 7552022200412925196}
   - {fileID: 7552022200519856549}
   - {fileID: 7552022199108446063}
   - {fileID: 7552022199684243965}
@@ -375,31 +326,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7552022200982912859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7552022200982912857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5ceacc981e4aa54c8c16203b80caa10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gCheck: {fileID: 7552022199684243955}
-  moveSpeed: 10
-  jumpThrust: 30
-  jumpMax: 0.3
-  jumpTime: 0
-  isJumping: 0
-  dashSpeed: {x: 75, y: 0}
-  canDash: 0
-  isDashing: 0
-  dashTimer: 0
-  dashTimerMax: 0.25
-  dashKeystrokeCounter: 0
-  slider: {fileID: 0}
 --- !u!50 &7552022200982912838
 Rigidbody2D:
   serializedVersion: 4
@@ -503,7 +429,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5ceacc981e4aa54c8c16203b80caa10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   gCheck: {fileID: 0}
+  rbod1: {fileID: 0}
   moveSpeed: 10
   jumpThrust: 30
   jumpMax: 0.3
@@ -516,6 +444,8 @@ MonoBehaviour:
   dashTimerMax: 0
   dashKeystrokeCounter: 0
   slider: {fileID: 0}
+  movingLeft: 0
+  movingRight: 0
 --- !u!114 &7552022200982912858
 MonoBehaviour:
   m_ObjectHideFlags: 0

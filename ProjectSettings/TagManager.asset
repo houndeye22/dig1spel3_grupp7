@@ -8,6 +8,9 @@ TagManager:
   - Enemy
   - Sword
   - Ground
+  - GM
+  - GroundCheck
+  - Weapon
   layers:
   - Default
   - TransparentFX
@@ -18,10 +21,10 @@ TagManager:
   - 
   - 
   - Enemy
-  - 
-  - 
-  - 
-  - 
+  - GroundCheck
+  - Ground
+  - InvisibleWall
+  - Weapon
   - 
   - 
   - 
