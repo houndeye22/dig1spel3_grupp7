@@ -73,7 +73,7 @@ public class Movement : MonoBehaviour
     void FixedUpdate()
     {
 
-        slider.value = dashTimer;
+        //slider.value = dashTimer;
 
         if (gCheck.isGrounded == true)
         {
