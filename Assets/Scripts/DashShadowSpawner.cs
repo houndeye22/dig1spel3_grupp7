@@ -5,29 +5,34 @@ using UnityEngine;
 public class DashShadowSpawner : MonoBehaviour
 {
 
+    public GameObject player;
+
     public Movement mov;
     public float maxTime = 0.25f;
     public float timePassed;
-    public SpriteRenderer dashShadow;
-    public SpriteRenderer spawnDashShadow;
+    //public SpriteRenderer spawnDashShadow;
     public float spriteVis;
+    public GameObject dashShadow;
 
     // Start is called before the first frame update
     void Start()
     {
 
-        //shadowColor = gameObject.GetComponent<Color>();
     }
 
     // Update is called once per frame
     void Update()
     {
+
+
+
+
         if (mov.isDashing == true)
         {
             timePassed += Time.deltaTime;
             if (timePassed <= maxTime)
             {
-                spawnDashShadow = Instantiate(dashShadow, transform.position, transform.rotation);
+                Instantiate(dashShadow, new Vector3(mov.transform.position.x, mov.transform.position.y, mov.transform.position.z), transform.rotation);
             }
         }
         else
@@ -39,7 +44,5 @@ public class DashShadowSpawner : MonoBehaviour
         {
             spriteVis -= 0.05f;
         }
-
-        //SpawnDashShadow.color = new Color(1, 1, 1, spriteVis);
     }
 }
