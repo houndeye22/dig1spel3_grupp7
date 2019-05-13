@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class JumpingPatrol : MonoBehaviour
 {
+    public Animator animator;
+
     public float jumpHight;
     public float JumpLenght;
     public int timesJumped;
@@ -14,23 +16,34 @@ public class JumpingPatrol : MonoBehaviour
 
     public Rigidbody2D jumpBody;
 
+    public float timer;
+    public float maxTimer = 1;
+
     private void Start()
     {
         jumpBody = GetComponent<Rigidbody2D>();
         Invoke("Jumping", 1f);
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (timesJumped == jumpsUntillTurn)
         {
             left = !left;
             timesJumped = 0;
         }
+
+        timer += 1;
+        if (timer >= maxTimer)
+        {
+            animator.SetBool("isJumping", false);
+            animator.SetBool("isFalling", true);
+        }
     }
 
     void Jumping()
     {
+        animator.SetBool("isJumping", true);
         if (timesJumped < jumpsUntillTurn && onGround >= 1 && left == false)
         {
             jumpBody.velocity = new Vector2(JumpLenght, jumpHight);
@@ -51,6 +64,16 @@ public class JumpingPatrol : MonoBehaviour
         {
             onGround++;
             Invoke("Jumping", 0.5f);
+            animator.SetBool("touchdown", true);
+            animator.SetBool("isFalling", false);
+            timer = 0;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Ground")
+        {
+            animator.SetBool("touchdown", false);
         }
     }
 }
