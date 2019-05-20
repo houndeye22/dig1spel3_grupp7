@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyAfterTime : MonoBehaviour
+public class DestroyAfterTim3 : MonoBehaviour
 {
     public float timeUntillDestroy;
     public float timePassed;
