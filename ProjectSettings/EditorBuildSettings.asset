@@ -12,9 +12,18 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 97b8c108bc8007842aaaf69dd2637032
   - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: abd71d37d32e1f641b822bbe2adab792
+  - enabled: 1
     path: Assets/Scenes/EmrikTest.unity
     guid: 931fdaa82f420f94e90ee9a040bb6dac
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 1d5bd63ced0f88a44aaf9e5568c1a5a4
+  - enabled: 1
+    path: Assets/Scenes/Options.unity
+    guid: 202bd6d6023ba864ab08ce801c1869fc
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: dbc604c63c080544dba9a1e68be1307a
   m_configObjects: {}

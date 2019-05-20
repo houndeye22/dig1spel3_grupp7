@@ -8,6 +8,12 @@ TagManager:
   - Enemy
   - Sword
   - Ground
+  - GM
+  - GroundCheck
+  - Weapon
+  - EnemyNest
+  - Checkpoint
+  - Blood
   layers:
   - Default
   - TransparentFX
@@ -17,12 +23,12 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Enemy
+  - GroundCheck
+  - Ground
+  - InvisibleWall
+  - Weapon
+  - Checkpoint
   - 
   - 
   - 
