@@ -13,6 +13,8 @@ public class DieScript : MonoBehaviour
     {
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
         transform.position = gm.lastCheckpoint;
+
+        FindObjectOfType<SoundManeger>().Play("Music");
     }
 
     void Update()

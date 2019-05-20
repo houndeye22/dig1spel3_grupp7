@@ -34,6 +34,8 @@ public class Movement : MonoBehaviour
     public bool movingLeft;
     public bool movingRight;
 
+    
+
 
     void Start()
     {
@@ -117,7 +119,7 @@ public class Movement : MonoBehaviour
         {
             isJumping = true;
             rbod1.velocity = new Vector2(rbod1.velocity.x, jumpThrust / 7);
-            animator.SetBool("isJumping", true);
+            animator.SetBool("isJumping", gCheck.isGrounded);
 
         }
         //Subtracts a small numeral

@@ -11,6 +11,9 @@ TagManager:
   - GM
   - GroundCheck
   - Weapon
+  - EnemyNest
+  - Checkpoint
+  - Blood
   layers:
   - Default
   - TransparentFX
@@ -25,7 +28,7 @@ TagManager:
   - Ground
   - InvisibleWall
   - Weapon
-  - 
+  - Checkpoint
   - 
   - 
   - 

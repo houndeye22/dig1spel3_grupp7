@@ -7,6 +7,8 @@ public class HPScript : MonoBehaviour
     public static int healthRemaining;
     public static int maxHealth = 6;
 
+    public GameObject blood;
+
 
 
     public static bool unTargetable = false;
@@ -21,6 +23,7 @@ public class HPScript : MonoBehaviour
         if (collision.tag == "Enemy" && unTargetable == false && PlayerAttack.noDmg == false)
         {
             healthRemaining--;
+            Instantiate(blood, transform.position, transform.rotation);
             unTargetable = true;
             Invoke("Targetable", 1f);
             FindObjectOfType<SoundManeger>().Play("PlayerHurt");

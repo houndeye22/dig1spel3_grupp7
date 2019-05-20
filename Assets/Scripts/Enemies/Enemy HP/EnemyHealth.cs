@@ -10,6 +10,8 @@ public class EnemyHealth : MonoBehaviour
     public static int enemyMaxHealth;
     public static bool invulnerable = false;
 
+    public GameObject blood;
+
     //private BoxCollider2D boxCol;
     //private CircleCollider2D cirCol;
     private SpriteRenderer rend;
@@ -31,6 +33,7 @@ public class EnemyHealth : MonoBehaviour
             if (collision.tag == "Weapon")
             {
                 TakeDmg();
+                Instantiate(blood, transform.position, transform.rotation);
             }
         }
     }
