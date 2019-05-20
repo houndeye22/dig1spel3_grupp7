@@ -31,8 +31,7 @@ public class PlayerDetection : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            flyingEnemy.transform.position = Vector2.MoveTowards
-                (flyingEnemy.transform.position, player.transform.position, enemy.moveSpeed * Time.deltaTime);
+            flyingEnemy.transform.position = Vector2.MoveTowards(flyingEnemy.transform.position, player.transform.position, enemy.moveSpeed * Time.deltaTime);
             chasisng = true;
         }
     }
@@ -43,8 +42,7 @@ public class PlayerDetection : MonoBehaviour
 
         if (chasisng == false)
         {
-            flyingEnemy.transform.position = Vector2.MoveTowards
-                (flyingEnemy.transform.position, nestPosition.transform.position, enemy.moveSpeed * Time.deltaTime);
+            flyingEnemy.transform.position = Vector2.MoveTowards(flyingEnemy.transform.position, nestPosition.transform.position, enemy.moveSpeed * Time.deltaTime);
         }
     }
 }

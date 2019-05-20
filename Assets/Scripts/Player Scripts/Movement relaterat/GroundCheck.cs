@@ -8,6 +8,18 @@ public class GroundCheck : MonoBehaviour
     public Movement mov;
     public GameObject dust;
 
+    // Start is called before the first frame update
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
 
     public bool isGrounded;
 
@@ -18,21 +30,13 @@ public class GroundCheck : MonoBehaviour
             isGrounded = true;
             mov.isJumping = false;
 
-            Dust();
-
-            mov.animator.SetBool("isJumping", !isGrounded);
+            Instantiate(dust, transform.position, transform.rotation);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         isGrounded = false;
         mov.dashKeystrokeCounter = 0;
-    }
-
-    public void Dust()
-    {
-        Instantiate(dust, transform.position, transform.rotation);
-
     }
 }
 
