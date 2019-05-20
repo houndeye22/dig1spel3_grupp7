@@ -26,6 +26,7 @@ public class HPScript : MonoBehaviour
             Instantiate(blood, transform.position, transform.rotation);
             unTargetable = true;
             Invoke("Targetable", 1f);
+
             FindObjectOfType<SoundManeger>().Play("PlayerHurt");
         }
         if (collision.tag == " Health" && healthRemaining < maxHealth)
