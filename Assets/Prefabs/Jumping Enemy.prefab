@@ -195,8 +195,12 @@ MonoBehaviour:
   timesJumped: 0
   jumpsUntillTurn: 3
   left: 0
+  sizeY: 1
+  sizeX: 1
   onGround: 0
   jumpBody: {fileID: 9000121393413184246}
+  timer: 0
+  maxTimer: 75
 --- !u!95 &424438836
 Animator:
   serializedVersion: 3

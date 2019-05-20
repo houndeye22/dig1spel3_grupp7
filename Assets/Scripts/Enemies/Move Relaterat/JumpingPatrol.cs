@@ -12,6 +12,9 @@ public class JumpingPatrol : MonoBehaviour
     public int jumpsUntillTurn;
     public bool left = false;
 
+    public float sizeY = 1;
+    public float sizeX = 1;
+
     public int onGround;
 
     public Rigidbody2D jumpBody;
@@ -27,6 +30,15 @@ public class JumpingPatrol : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (left == true)
+        {
+            transform.localScale = new Vector3(-sizeX, sizeY, transform.position.z);
+        }
+        else
+        {
+            transform.localScale = new Vector3(sizeX, sizeY, transform.position.z);
+        }
+
         if (timesJumped == jumpsUntillTurn)
         {
             left = !left;

@@ -51,7 +51,7 @@ public class Knockback : MonoBehaviour
             }
             else
             {
-                print("Left");
+                print("left");
                 rbody.velocity = new Vector2(Random.Range(maxX, minX), Random.Range(maxY, minY));
             }
         }
