@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Spear : MonoBehaviour
 {
-    public Projectile projectile;
     private Rigidbody2D spearBody;
     public float speed;
     public float flyTime;
@@ -12,13 +11,16 @@ public class Spear : MonoBehaviour
     private void Start()
     {
         spearBody = GetComponent<Rigidbody2D>();
+        
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        transform.Translate(Vector2.up * speed * Time.deltaTime);
-        flyTime += Time.deltaTime;
-        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, -flyTime * 20);
+        spearBody.velocity = ((Vector2)transform.right * speed * Time.deltaTime);
+
+        Vector2 dir = spearBody.velocity;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

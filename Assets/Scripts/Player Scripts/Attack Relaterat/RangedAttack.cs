@@ -28,13 +28,14 @@ public class RangedAttack : MonoBehaviour
         {
             waitTime -= Time.deltaTime;
         }
-        
+
     }
 
     public void Throw()
     {
-        
-         Instantiate(spear, throwPoint.transform.position, throwPoint.transform.rotation);
-        
+
+        Instantiate(spear, throwPoint.transform.position, throwPoint.transform.rotation);
+        //UnityEditor.EditorApplication.isPaused = true;
+
     }
 }
