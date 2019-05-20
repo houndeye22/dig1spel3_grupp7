@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6059386350626238005}
   - component: {fileID: 6059386350626238004}
   - component: {fileID: 6059386350626238007}
+  - component: {fileID: 1197480433133062440}
   m_Layer: 0
   m_Name: hit ground
   m_TagString: Untagged
@@ -4765,3 +4766,17 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &1197480433133062440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6059386350626238006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d53b9c7349f8854cafeb66336c1e734, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startTime: 2
+  timeLeft: 0

@@ -6,6 +6,7 @@ public class GroundCheck : MonoBehaviour
 {
 
     public Movement mov;
+    public GameObject dust;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,8 @@ public class GroundCheck : MonoBehaviour
         {
             isGrounded = true;
             mov.isJumping = false;
+
+            Instantiate(dust, transform.position, transform.rotation);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
