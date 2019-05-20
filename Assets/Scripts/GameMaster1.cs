@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameMaster : MonoBehaviour
+public class GameMaster1 : MonoBehaviour
 {
-    private static GameMaster instance;
+    private static GameMaster1 instance;
     public Vector2 lastCheckPointPos;
 
 
