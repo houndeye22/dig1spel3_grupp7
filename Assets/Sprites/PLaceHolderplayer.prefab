@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4dcf63c50858db479c7cfc6deae5783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mov: {fileID: 0}
+  mov: {fileID: 7552022200982912844}
   isGrounded: 0
 --- !u!61 &974175867
 BoxCollider2D:
@@ -457,6 +457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 924c270f2dba9c7419de73fe508d2e40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 1945559922}
   attackCd: 0.4
   attackTriggerCd: 0.3
   attackTriggerUp: {fileID: 7552022200519856548}
