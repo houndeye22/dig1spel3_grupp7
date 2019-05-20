@@ -729,6 +729,14 @@ PrefabInstance:
       propertyPath: slider
       value: 
       objectReference: {fileID: 1578868588}
+    - target: {fileID: 706451509, guid: ab76895a84a9a944abebd464d8e80d9b, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 706451509, guid: ab76895a84a9a944abebd464d8e80d9b, type: 3}
+      propertyPath: m_Size.x
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab76895a84a9a944abebd464d8e80d9b, type: 3}
 --- !u!4 &706451508 stripped
@@ -3649,31 +3657,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1752495004}
   m_CullTransparentMesh: 0
---- !u!1 &1755937354 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3683823264148378158, guid: 094236e7ae2b8184babf060b1fb9c08c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1846600112}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1755937355
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1755937354}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9aa15c21f6bc7b340bbe2749049b99ce, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1761861687
 GameObject:
   m_ObjectHideFlags: 0
@@ -3801,7 +3784,7 @@ PrefabInstance:
     - target: {fileID: 3683823264148378159, guid: 094236e7ae2b8184babf060b1fb9c08c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3683823264148378159, guid: 094236e7ae2b8184babf060b1fb9c08c,
         type: 3}
@@ -3843,11 +3826,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3683823264148378159, guid: 094236e7ae2b8184babf060b1fb9c08c,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3683823264148378156, guid: 094236e7ae2b8184babf060b1fb9c08c,
         type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1967675918}
+    - target: {fileID: 3683823264148378157, guid: 094236e7ae2b8184babf060b1fb9c08c,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 094236e7ae2b8184babf060b1fb9c08c, type: 3}
 --- !u!1 &1909837158
